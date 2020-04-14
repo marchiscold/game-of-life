@@ -4,28 +4,33 @@ export class Board {
   constructor(gameElement, rowCount, colCount) {
     this._rows = rowCount;
     this._cols = colCount;
-    [this._cellArr, this._cellList] = this._createDOMCells();
+    [this._cellArr, this._cellMap] = this._createDOMCells();
     this._initDOMBoard(gameElement);
   }
 
   update() {
-    this._cellList.forEach(cell => {
+    this._cellMap.forEach(cell => {
       this._markCells(this._aliveNeighbors(cell), cell);
     });
   }
 
   render() {
-    this._cellList.forEach(cell => {
+    this._cellMap.forEach(cell => {
       cell.render();
     })
   }
 
-  highlightCell(cell) {
-    cell.classList.add('highlight');
+  highlightCell(cellElem) {
+    cellElem.classList.add('highlight');
   }
 
-  revertHighlight(cell) {
-    cell.classList.remove('highlight');
+  revertHighlight(cellElem) {
+    cellElem.classList.remove('highlight');
+  }
+
+  toggleCell(cellElem) {
+    let cell = this._cellMap.get(cellElem);
+    cell.isAlive() ? cell.markDead() : cell.markAlive();
   }
 
   _aliveNeighbors(cell) {
@@ -66,7 +71,7 @@ export class Board {
 
   _createDOMCells () {
     let cellArr = [];
-    let cellList = [];
+    let cellMap = new Map();
     for (let i = 0; i < this._rows; i++) {
       cellArr[i] = [];
       for (let j = 0; j < this._cols; j++) {
@@ -74,10 +79,10 @@ export class Board {
         let state = Math.round(Math.random()) ? "alive" : "dead";//50/50
         let cell = new Cell(cellElement, i, j, state)
         cellArr[i][j] = cell;
-        cellList.push(cell);
+        cellMap.set(cellElement, cell);
       }
     }
-    return [cellArr, cellList];
+    return [cellArr, cellMap];
   }
 
   _initDOMBoard(gameElement) {
