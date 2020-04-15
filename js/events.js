@@ -1,6 +1,8 @@
 export class EventHandler {
-  constructor(board) {
+  constructor(board, tick, pause) {
     this._board = board;
+    this._tick = tick;
+    this._pause = pause;
     this._initListeners();
   }
 
@@ -8,7 +10,9 @@ export class EventHandler {
     document.addEventListener("mouseover", ev => {
       if (ev.target.matches('.cell')) {
         this._board.highlightCell(ev.target);
-        console.log(ev.which);
+        if (ev.which == 1) {
+          this._board.toggleCell(ev.target);
+        }
       }
     });
     document.addEventListener("mouseout", ev => {
@@ -19,6 +23,12 @@ export class EventHandler {
     document.addEventListener('click', ev => {
       if (ev.target.matches('.cell')) {
         this._board.toggleCell(ev.target);
+      }
+      if (ev.target.matches('#stop')) {
+        this._pause();
+      }
+      if (ev.target.matches('#start')) {
+        this._tick();
       }
     });
     document.addEventListener('mousedown', ev => {

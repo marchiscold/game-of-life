@@ -30,7 +30,7 @@ export class Board {
 
   toggleCell(cellElem) {
     let cell = this._cellMap.get(cellElem);
-    cell.isAlive() ? cell.markDead() : cell.markAlive();
+    cell.isAlive() ? cell.setDead() : cell.setAlive();
   }
 
   _aliveNeighbors(cell) {
