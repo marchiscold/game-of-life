@@ -16,11 +16,10 @@ body {
 
 #game-board {
   display: inline-block;
-  /* width: 300px;
-  height: 300px; */
   background-color: #000;
   border-left: 1px solid #333;
   border-top: 1px solid #333;
+  overflow: hidden;
 }
 
 .row {
@@ -32,13 +31,14 @@ body {
 .cell {
   width: 10px;
   height: 10px;
-  color: rgb(36, 204, 36);
+  color: hsl(120, 70%, 47%);
   font-weight: bolder;
   font-size: 9px;
   background-color: #000;
   /* transition: opacity 490ms ease-in-out; */
   border-right: .1px solid #333;
   border-bottom: .1px solid #333;
+  overflow: hidden;
 }
 
 .cell.highlight {
@@ -53,4 +53,13 @@ body {
 .cell.alive {
   /* opacity: 1; */
   /* background-color: white; */
+}
+
+.game-button {
+  width: 50px;
+  font-size: 18px;
+  color: hsl(120, 70%, 47%);
+  background-color: #000;
+  border: 1px solid hsl(120, 70%, 30%);
+  cursor: pointer;
 }

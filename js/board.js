@@ -33,6 +33,12 @@ export class Board {
     cell.isAlive() ? cell.setDead() : cell.setAlive();
   }
 
+  clear() {
+    this._cellMap.forEach(cell => {
+      cell.setDead();
+    })
+  }
+
   _aliveNeighbors(cell) {
     let row = cell.getRow();
     let col = cell.getCol();

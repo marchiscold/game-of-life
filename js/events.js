@@ -35,6 +35,9 @@ export class EventHandler {
         ev.target.value = 'stop';
         return;
       }
+      if (ev.target.matches('#clear')) {
+        this._board.clear();
+      }
     });
     document.addEventListener('mousedown', ev => {
       ev.preventDefault();

@@ -16,4 +16,5 @@ export class Game {
   pause () {
     this._isPaused = true;
   }
+
 }
