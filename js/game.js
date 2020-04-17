@@ -6,8 +6,7 @@ export class Game {
   
   tick () {
     this._isPaused = false;
-    this._board.update();
-    this._board.render();
+    this.step();
     setTimeout(() => {
       if (!this._isPaused) this.tick();
     }, 190);
@@ -15,6 +14,11 @@ export class Game {
   
   pause () {
     this._isPaused = true;
+  }
+
+  step () {
+    this._board.update();
+    this._board.render();
   }
 
 }

@@ -23,20 +23,30 @@ export class EventHandler {
       if (ev.target.matches('.cell')) {
         this._board.toggleCell(ev.target);
       }
-      if (ev.target.matches('#stop')) {
+      if (ev.target.matches('.stop')) {
         this._game.pause();
-        ev.target.id = 'start';
+        ev.target.classList.add('run');
+        ev.target.classList.remove('stop');
         ev.target.value = 'run';
         return;
       }
-      if (ev.target.matches('#start')) {
+      if (ev.target.matches('.run')) {
         this._game.tick();
-        ev.target.id = 'stop';
+        ev.target.classList.add('stop');
+        ev.target.classList.remove('run');
         ev.target.value = 'stop';
         return;
       }
       if (ev.target.matches('#clear')) {
         this._board.clear();
+      }
+      if (ev.target.matches('#step')) {
+        this._game.pause();
+        let toggleButton = document.getElementById('toggleGameLoop');
+        toggleButton.classList.remove('stop');
+        toggleButton.classList.add('run');
+        toggleButton.value = 'run';
+        this._game.step();
       }
     });
     document.addEventListener('mousedown', ev => {
