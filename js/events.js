@@ -1,8 +1,7 @@
 export class EventHandler {
-  constructor(board, tick, pause) {
+  constructor(board, game) {
     this._board = board;
-    this._tick = tick;
-    this._pause = pause;
+    this._game = game;
     this._initListeners();
   }
 
@@ -25,10 +24,10 @@ export class EventHandler {
         this._board.toggleCell(ev.target);
       }
       if (ev.target.matches('#stop')) {
-        this._pause();
+        this._game.pause();
       }
       if (ev.target.matches('#start')) {
-        this._tick();
+        this._game.tick();
       }
     });
     document.addEventListener('mousedown', ev => {
