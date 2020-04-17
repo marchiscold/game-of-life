@@ -6,7 +6,7 @@ export class EventHandler {
   }
 
   _initListeners() {
-    document.addEventListener("mouseover", ev => {
+    document.addEventListener('mouseover', ev => {
       if (ev.target.matches('.cell')) {
         this._board.highlightCell(ev.target);
         if (ev.which == 1) {
@@ -14,7 +14,7 @@ export class EventHandler {
         }
       }
     });
-    document.addEventListener("mouseout", ev => {
+    document.addEventListener('mouseout', ev => {
       if (ev.target.matches('.cell')) {
         this._board.revertHighlight(ev.target);
       }
@@ -25,9 +25,15 @@ export class EventHandler {
       }
       if (ev.target.matches('#stop')) {
         this._game.pause();
+        ev.target.id = 'start';
+        ev.target.value = 'run';
+        return;
       }
       if (ev.target.matches('#start')) {
         this._game.tick();
+        ev.target.id = 'stop';
+        ev.target.value = 'stop';
+        return;
       }
     });
     document.addEventListener('mousedown', ev => {
