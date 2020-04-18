@@ -8,6 +8,7 @@ export class EventHandler {
   _initListeners() {
     document.addEventListener('mouseover', ev => {
       if (ev.target.matches('.cell')) {
+        //TODO remove code duplicate in gameservice
         this._board.highlightCell(ev.target);
         if (ev.which == 1) {
           this._board.toggleCell(ev.target);
@@ -50,7 +51,21 @@ export class EventHandler {
       }
     });
     document.addEventListener('mousedown', ev => {
+      console.log(ev.type);
+      if (ev.target.matches('.cell')) {
+        this._game.pauseForDrawing();
+
+        //TODO remove code duplicate in gameservice
+        this._board.highlightCell(ev.target);
+        if (ev.which == 1) {
+          this._board.toggleCell(ev.target);
+        }
+      }
       ev.preventDefault();
+    })
+    document.addEventListener('mouseup', ev => {
+      console.log(ev.type);
+        this._game.resumeIfPausedForDrawing();
     })
   }
 }
