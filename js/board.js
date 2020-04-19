@@ -39,6 +39,12 @@ export class Board {
     })
   }
 
+  populate() {
+    this._cellMap.forEach((cell) => {
+      Math.random() > 0.83 ? cell.setAlive() : cell.setDead();
+    });
+  }
+
   _aliveNeighbors(cell) {
     let row = cell.getRow();
     let col = cell.getCol();
@@ -82,7 +88,7 @@ export class Board {
       cellArr[i] = [];
       for (let j = 0; j < this._cols; j++) {
         let cellElement = document.createElement("div");
-        let state = Math.round(Math.random()) ? "alive" : "dead";//50/50
+        let state = Math.random() > 0.83 ? "alive" : "dead";
         let cell = new Cell(cellElement, i, j, state)
         cellArr[i][j] = cell;
         cellMap.set(cellElement, cell);

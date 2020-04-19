@@ -5,6 +5,7 @@ export class Controls {
     this._gameToggle = document.getElementById('toggleGameLoop');
     this._step = document.getElementById('step');
     this._clear = document.getElementById('clear');
+    this._reset = document.getElementById('reset')
   }
 
   run() {
@@ -31,5 +32,9 @@ export class Controls {
 
   clear() {
     this._board.clear();
+  }
+
+  reset() {
+    this._board.populate();  
   }
 }
