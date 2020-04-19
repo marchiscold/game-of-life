@@ -1,5 +1,10 @@
+import { Controls } from "./controls.js";
+import { Gameservice } from "./gameservice.js";
+
 export class EventHandler {
   constructor(board, game) {
+    this._controls = new Controls(game, board);
+    this._gameService = new Gameservice(game, board);
     this._board = board;
     this._game = game;
     this._initListeners();
@@ -21,29 +26,18 @@ export class EventHandler {
     });
     document.addEventListener('click', ev => {
       if (ev.target.matches('.stop')) {
-        this._game.pause();
-        ev.target.classList.add('run');
-        ev.target.classList.remove('stop');
-        ev.target.value = 'run';
+        this._controls.stop();
         return;
       }
       if (ev.target.matches('.run')) {
-        this._game.resume();
-        ev.target.classList.add('stop');
-        ev.target.classList.remove('run');
-        ev.target.value = 'stop';
+        this._controls.run();
         return;
       }
       if (ev.target.matches('#clear')) {
-        this._board.clear();
+        this._controls.clear();
       }
       if (ev.target.matches('#step')) {
-        this._game.pause();
-        let toggleButton = document.getElementById('toggleGameLoop');
-        toggleButton.classList.remove('stop');
-        toggleButton.classList.add('run');
-        toggleButton.value = 'run';
-        this._game.step();
+        this._controls.step();
       }
     });
     document.addEventListener('mousedown', ev => {
