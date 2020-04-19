@@ -1,5 +1,5 @@
 import { Board } from "./board.js";
-import { EventHandler } from "./events.js";
+import { EventHandler } from "./eventhandler.js";
 import { Game } from './game.js';
 
 const COLUMN_COUNT = 75;

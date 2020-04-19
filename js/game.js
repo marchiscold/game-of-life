@@ -1,20 +1,15 @@
 export class Game {
   constructor (board) {
     this._board = board;
-    this._isPaused = false;
+    this._isPaused = true;
     this._isRunning = false;
     this._isPausedForDrawing = false;
+    this.run();
   }
   
   tick () {
-    if (this._isRunning) return;
-    this._isPaused = false;
-    this._isRunning = true;
+    if (this._isPaused) return;
     this.step();
-    setTimeout(() => {
-      this._isRunning = false;
-      if (!this._isPaused) this.tick();
-    }, 190);
   };
 
   run () {
@@ -23,8 +18,16 @@ export class Game {
     }, 190)
   }
   
+  resume () {
+    this._isPaused = false;
+  }
+
   pause () {
     this._isPaused = true;
+  }
+
+  isPaused() {
+    return this._isPaused;
   }
 
   step () {
@@ -40,7 +43,7 @@ export class Game {
   resumeIfPausedForDrawing() {
     if (this._isPausedForDrawing) {
       this._isPausedForDrawing = false;
-      this.tick();  
+      this._isPaused = false;
     }
   }
 }
