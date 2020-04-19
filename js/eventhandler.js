@@ -20,9 +20,6 @@ export class EventHandler {
       }
     });
     document.addEventListener('click', ev => {
-      if (ev.target.matches('.cell')) {
-        this._board.toggleCell(ev.target);
-      }
       if (ev.target.matches('.stop')) {
         this._game.pause();
         ev.target.classList.add('run');
