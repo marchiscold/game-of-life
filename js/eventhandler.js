@@ -42,7 +42,9 @@ export class EventHandler {
       }
     });
     document.addEventListener('mousedown', ev => {
-      ev.preventDefault();
+      if (this._board.contains(ev.target)) {
+        ev.preventDefault();
+      }
       if (!ev.target.matches('.cell')) return;
       if (ev.which != 1) return;
 

@@ -2,10 +2,11 @@ import {Cell} from './cell.js';
 
 export class Board {
   constructor(gameElement, rowCount, colCount) {
+    this._gameElement = gameElement;
     this._rows = rowCount;
     this._cols = colCount;
     [this._cellArr, this._cellMap] = this._createDOMCells();
-    this._initDOMBoard(gameElement);
+    this._initDOMBoard(this._gameElement);
   }
 
   update() {
@@ -43,6 +44,10 @@ export class Board {
     this._cellMap.forEach((cell) => {
       Math.random() > 0.83 ? cell.setAlive() : cell.setDead();
     });
+  }
+
+  contains(cellElem) {
+    return this._gameElement.contains(cellElem);
   }
 
   _aliveNeighbors(cell) {
