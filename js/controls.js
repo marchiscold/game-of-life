@@ -6,6 +6,7 @@ export class Controls {
     this._step = document.getElementById('step');
     this._clear = document.getElementById('clear');
     this._reset = document.getElementById('reset')
+    this._rangeLabel = document.getElementById('range-value');
   }
 
   run() {
@@ -36,5 +37,9 @@ export class Controls {
 
   reset() {
     this._board.populate();  
+  }
+
+  setGameSpeed(speed) {
+    this._rangeLabel.textContent = speed.toFixed(1);
   }
 }

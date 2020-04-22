@@ -9,6 +9,11 @@ export class EventHandler {
   }
 
   _initListeners() {
+    document.addEventListener('input', ev => {
+      if (ev.target.matches('#range')) {
+        this._controls.setGameSpeed(parseFloat(ev.target.value));
+      }
+    })
     document.addEventListener('mouseover', ev => {
       if (ev.target.matches('.cell')) {
         this._board.highlightCell(ev.target);
