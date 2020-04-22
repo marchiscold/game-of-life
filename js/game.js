@@ -2,9 +2,9 @@ export class Game {
   constructor (board) {
     this._board = board;
     this._isPaused = true;
-    this._isRunning = false;
     this._isPausedForDrawing = false;
-    this.run();
+    this._genPerSecond = 5;
+    this._run();
   }
   
   tick () {
@@ -12,10 +12,15 @@ export class Game {
     this.step();
   };
 
-  run () {
-    setInterval(() => {
-      this.tick();
-    }, 190)
+  _run () {
+    this.tick();
+    setTimeout(() => {
+      this._run();
+    }, this._getDelayMillis());
+  }
+
+  _getDelayMillis() {
+    return 1000 / this._genPerSecond;
   }
   
   resume () {
@@ -45,5 +50,9 @@ export class Game {
       this._isPausedForDrawing = false;
       this._isPaused = false;
     }
+  }
+
+  setSpeed(speed) {
+    this._genPerSecond = speed;
   }
 }

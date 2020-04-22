@@ -41,5 +41,6 @@ export class Controls {
 
   setGameSpeed(speed) {
     this._rangeLabel.textContent = speed.toFixed(1);
+    this._game.setSpeed(speed);
   }
 }
