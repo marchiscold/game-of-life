@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: #000;
+}
+
+.wrapper {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #000;
+  height: 100vh;
+  position: relative;
+}
