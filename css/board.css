@@ -83,7 +83,7 @@ body {
 .range-label {
   display: flex;
   color: hsl(120, 70%, 35%);
-  font-size: 18px;
+  font-size: 15px;
   margin-left: 4px;
   width: 100px;
 }
