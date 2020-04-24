@@ -89,14 +89,13 @@ export class Board {
   _createDOMCells () {
     let cellArr = [];
     let cellMap = new Map();
-    for (let i = 0; i < this._rows; i++) {
-      cellArr[i] = [];
-      for (let j = 0; j < this._cols; j++) {
-        let cellElement = document.createElement("div");
+    for (let row = 0; row < this._rows; row++) {
+      cellArr[row] = [];
+      for (let col = 0; col < this._cols; col++) {
         let state = Math.random() > 0.83 ? "alive" : "dead";
-        let cell = new Cell(cellElement, i, j, state)
-        cellArr[i][j] = cell;
-        cellMap.set(cellElement, cell);
+        let cell = new Cell(row, col, state)
+        cellArr[row][col] = cell;
+        cellMap.set(cell.getCellElement(), cell);
       }
     }
     return [cellArr, cellMap];

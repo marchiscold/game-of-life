@@ -8,10 +8,36 @@ body {
   background-color: #000;
 }
 
+.container {
+  display: flex;
+}
+
 .wrapper {
-  margin-top: 20px;
-  text-align: center;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 8px;
   background-color: #000;
-  height: 100vh;
   position: relative;
+}
+
+.pattern-container {
+  width: 20vw;
+  min-width: 200px;
+  border: 1px solid green;
+  color: hsl(120, 70%, 35%);
+}
+
+#game-board {
+  margin: 0 auto;
+  background-color: #000;
+  border-left: 1px solid #333;
+  border-top: 1px solid #333;
+  overflow: hidden;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 5px;
 }

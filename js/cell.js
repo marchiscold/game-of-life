@@ -1,6 +1,6 @@
 export class Cell {
-  constructor(cellElement, row, col, state) {
-    this._cellElement = cellElement;
+  constructor(row, col, state) {
+    this._cellElement = document.createElement("div");
     this._state = state; // states: 'alive', 'dead'
     this._row = row;
     this._col = col;

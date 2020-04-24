@@ -4,13 +4,19 @@ import { Game } from './game.js';
 import { Pattern } from "./pattern.js";
 
 const COLUMN_COUNT = 75;
-const ROW_COUNT = 45;
+const ROW_COUNT = 50;
+const CELL_WIDTH = 10;
 
 let gameElement = document.getElementById("game-board");
-let board = new Board(gameElement, ROW_COUNT, COLUMN_COUNT);
+gameElement.style.width = COLUMN_COUNT * CELL_WIDTH + "px";
+gameElement.style.height = ROW_COUNT * CELL_WIDTH + 1 + "px";
+
+let board = new Board(gameElement, ROW_COUNT, COLUMN_COUNT, CELL_WIDTH);
 let game = new Game(board);
 let pattern = new Pattern(document.querySelector('.pattern'));
 let handler = new EventHandler(board, game);
+
+
 
 
 
