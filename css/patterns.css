@@ -1,7 +1,23 @@
-.pattern {
-  /* color: hsl(120, 70%, 35%); */
+.patterns {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
 }
 
-.selector {
-  /* color: hsl(120, 70%, 35%); */
+.pattern {
+
+}
+
+.pattern-nav {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #333;;
+}
+
+.game-patterns {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
 }

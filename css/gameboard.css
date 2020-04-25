@@ -5,11 +5,11 @@
 }
 
 .cell {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   color: hsl(120, 70%, 47%);
   font-weight: bolder;
-  font-size: 9px;
+  font-size: 11px;
   background-color: #000;
   /* transition: opacity 490ms ease-in-out; */
   border-right: .1px solid #333;
