@@ -1,4 +1,5 @@
 import {Cell} from './cell.js';
+import {Pattern} from './pattern.js';
 
 export class Board {
   constructor(gameElement, rowCount, colCount) {
@@ -48,6 +49,20 @@ export class Board {
 
   contains(cellElem) {
     return this._gameElement.contains(cellElem);
+  }
+
+  drawPattern(pattern) {
+    this.clear();
+    for (let row = 0; row < pattern.width; row++) {
+      for (let col = 0; col < pattern.height; col++) {
+        let gameRow = row + pattern.offsetTop;
+        let gameCol = col + pattern.offsetLeft;
+        let tempCell = this._cellArr[gameRow][gameCol];
+        if (pattern.isAlive(row, col)) {
+          tempCell.setAlive();
+        }
+      }
+    }
   }
 
   _aliveNeighbors(cell) {
