@@ -1,5 +1,6 @@
 import {Cell} from './cell.js';
 import {Pattern} from './pattern.js';
+import { PatternCollection } from './patternCollection.js';
 
 export class Board {
   constructor(gameElement, rowCount, colCount) {
@@ -7,6 +8,7 @@ export class Board {
     this._rows = rowCount;
     this._cols = colCount;
     [this._cellArr, this._cellMap] = this._createDOMCells();
+    this._patterns = new PatternCollection();
     this._initDOMBoard(this._gameElement);
   }
 
@@ -51,10 +53,11 @@ export class Board {
     return this._gameElement.contains(cellElem);
   }
 
-  drawPattern(pattern) {
+  drawPattern(patternName) {
+    let pattern = this._patterns.get(patternName);
     this.clear();
-    for (let row = 0; row < pattern.width; row++) {
-      for (let col = 0; col < pattern.height; col++) {
+    for (let row = 0; row < pattern.height; row++) {
+      for (let col = 0; col < pattern.width; col++) {
         let gameRow = row + pattern.offsetTop;
         let gameCol = col + pattern.offsetLeft;
         let tempCell = this._cellArr[gameRow][gameCol];

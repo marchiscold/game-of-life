@@ -9,6 +9,9 @@ export class EventHandler {
   }
 
   _initListeners() {
+    $(document).on('change', '.game-patterns-select', ev => {
+      this._board.drawPattern(ev.target.value);
+    })
     $(document).on('input', '#range', ev => {
       this._controls.setGameSpeed(parseFloat(ev.target.value));
     });

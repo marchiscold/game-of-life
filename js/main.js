@@ -16,8 +16,8 @@ let game = new Game(board);
 let handler = new EventHandler(board, game);
 
 setTimeout(() => {
-  board.drawPattern(new Pattern());
-}, 2000)
+  board.drawPattern('mwss');
+}, 1000)
 
 
 

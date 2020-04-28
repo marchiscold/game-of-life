@@ -1,16 +1,14 @@
 export class Pattern {
-  constructor () {
+  constructor (patternArr) {
     this._name = 'glider';
-    this._patternArr = [[0, 0, 1],
-                        [1, 0, 1],
-                        [0, 1, 1]];
-    this.offsetTop = 5;
-    this.offsetLeft = 5;
-    this.width = 3;
-    this.height = 3;                      
+    this._patternArr = patternArr;
+    this.width = this._patternArr[0].length;
+    this.height = this._patternArr.length;                      
+    this.offsetTop = 25 - Math.round(this.height/2);
+    this.offsetLeft = 33 - Math.round(this.width/2);
   }
 
-  isAlive(x, y) {
-    return this._patternArr[x][y] == 1;
+  isAlive(row, col) {
+    return this._patternArr[row][col] == 1;
   }
 }
