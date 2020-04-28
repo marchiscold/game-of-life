@@ -9,44 +9,36 @@ export class EventHandler {
   }
 
   _initListeners() {
-    document.addEventListener('input', ev => {
-      if (ev.target.matches('#range')) {
-        this._controls.setGameSpeed(parseFloat(ev.target.value));
-      }
-    })
-    document.addEventListener('mouseover', ev => {
-      if (ev.target.matches('.cell')) {
-        this._board.highlightCell(ev.target);
-        if (ev.which == 1) {
-          this._board.toggleCell(ev.target);
-        }
+    $(document).on('input', '#range', ev => {
+      this._controls.setGameSpeed(parseFloat(ev.target.value));
+    });
+    $(document).on('mouseover', '.cell', ev => {
+      this._board.highlightCell(ev.target);
+      if (ev.which == 1) {
+        this._board.toggleCell(ev.target);
       }
     });
-    document.addEventListener('mouseout', ev => {
-      if (ev.target.matches('.cell')) {
-        this._board.revertHighlight(ev.target);
-      }
+    $(document).on('mouseout', '.cell',ev => {
+      this._board.revertHighlight(ev.target);
     });
-    document.addEventListener('click', ev => {
-      if (ev.target.matches('.stop')) {
-        this._controls.stop();
-        return;
-      }
-      if (ev.target.matches('.run')) {
-        this._controls.run();
-        return;
-      }
-      if (ev.target.matches('#clear')) {
-        this._controls.clear();
-      }
-      if (ev.target.matches('#step')) {
-        this._controls.step();
-      }
-      if (ev.target.matches('#reset')) {
-        this._controls.reset();
-      }
+    $(document).on('click', '.stop', ev => {
+      this._controls.stop();
+      return;
     });
-    document.addEventListener('mousedown', ev => {
+    $(document).on('click', '.run', ev => {
+      this._controls.run();
+      return;
+    });
+    $(document).on('click', '#clear', ev => {
+      this._controls.clear();
+    });
+    $(document).on('click', '#step', ev => {
+      this._controls.step();
+    });
+    $(document).on('click', '#reset', ev => {
+      this._controls.reset();
+    });
+    $(document).on('mousedown', ev => {
       if (this._board.contains(ev.target)) {
         ev.preventDefault();
       }
@@ -57,9 +49,9 @@ export class EventHandler {
         this._game.pauseForDrawing();
       }
       this._board.toggleCell(ev.target);
-    })
-    document.addEventListener('mouseup', ev => {
+    });
+    $(document).on('mouseup', ev => {
       this._game.resumeIfPausedForDrawing();
-    })
+    });
   }
 }
