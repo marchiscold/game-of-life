@@ -9,6 +9,7 @@ export class Board {
     this._cols = colCount;
     [this._cellArr, this._cellMap] = this._createDOMCells();
     this._patterns = new PatternCollection();
+    this._highlightedCells = [];
     this._initDOMBoard(this._gameElement);
   }
 
@@ -53,16 +54,50 @@ export class Board {
     return this._gameElement.contains(cellElem);
   }
 
+  highlightWithPattern(patternName, cellElem) {
+    let cell = this._cellMap.get(cellElem);
+    let offsetTop = cell.getRow();
+    let offsetLeft = cell.getCol();
+    let pattern = this._patterns.get(patternName);
+
+    for (let row = 0; row < pattern.height; row++) {
+      for (let col = 0; col < pattern.width; col++) {
+        let gameRow = row + offsetTop;
+        let gameCol = col + offsetLeft;
+        let cell = this._cellArr[gameRow][gameCol];
+        if (pattern.isAlive(row, col)) {
+          this._highlightedCells.push(cell);
+          this._renderHighlights();
+        }
+      }
+    }
+  }
+
+  removePatternHighlight() {
+    this._highlightedCells.forEach(cell => {
+      cell.removeHighlight();
+    })
+    this._highlightedCells = [];
+  }
+
+  _renderHighlights() {
+    this._highlightedCells.forEach(cell => {
+      cell.addHighlight();
+    })
+  }
+
   drawPattern(patternName) {
     let pattern = this._patterns.get(patternName);
+    let offsetTop = parseInt(this._rows/2);
+    let offsetLeft = parseInt(this._cols/2);
     this.clear();
     for (let row = 0; row < pattern.height; row++) {
       for (let col = 0; col < pattern.width; col++) {
-        let gameRow = row + pattern.offsetTop;
-        let gameCol = col + pattern.offsetLeft;
-        let tempCell = this._cellArr[gameRow][gameCol];
+        let gameRow = row + offsetTop;
+        let gameCol = col + offsetLeft;
+        let cell = this._cellArr[gameRow][gameCol];
         if (pattern.isAlive(row, col)) {
-          tempCell.setAlive();
+          cell.setAlive();
         }
       }
     }

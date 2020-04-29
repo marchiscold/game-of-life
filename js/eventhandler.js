@@ -10,12 +10,14 @@ export class EventHandler {
 
   _initListeners() {
     $(document).on('change', '.game-patterns-select', ev => {
+      this._controls.stop();
       this._board.drawPattern(ev.target.value);
     })
     $(document).on('input', '#range', ev => {
       this._controls.setGameSpeed(parseFloat(ev.target.value));
     });
     $(document).on('mouseover', '.cell', ev => {
+      this._board.highlightWithPattern('glider', ev.target);
       this._board.highlightCell(ev.target);
       if (ev.which == 1) {
         this._board.toggleCell(ev.target);
@@ -23,14 +25,13 @@ export class EventHandler {
     });
     $(document).on('mouseout', '.cell',ev => {
       this._board.revertHighlight(ev.target);
+      this._board.removePatternHighlight();
     });
     $(document).on('click', '.stop', ev => {
       this._controls.stop();
-      return;
     });
     $(document).on('click', '.run', ev => {
       this._controls.run();
-      return;
     });
     $(document).on('click', '#clear', ev => {
       this._controls.clear();

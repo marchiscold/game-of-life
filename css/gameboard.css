@@ -20,6 +20,10 @@
 .cell.highlight {
   border: .1px solid palegreen;
 }
+
+.cell.pattern-hover {
+  opacity: 0.5;
+}
 .cell.dead {
   /* opacity: 0; */
   /* background-color: #000; */

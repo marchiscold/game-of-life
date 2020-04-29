@@ -15,10 +15,6 @@ let board = new Board(gameElement, ROW_COUNT, COLUMN_COUNT, CELL_WIDTH);
 let game = new Game(board);
 let handler = new EventHandler(board, game);
 
-setTimeout(() => {
-  board.drawPattern('mwss');
-}, 1000)
-
 
 
 

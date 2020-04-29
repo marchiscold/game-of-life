@@ -1,6 +1,5 @@
 export class Pattern {
   constructor (patternArr) {
-    this._name = 'glider';
     this._patternArr = patternArr;
     this.width = this._patternArr[0].length;
     this.height = this._patternArr.length;                      

@@ -39,6 +39,16 @@ export class Cell {
     this._cellElement.innerHTML = "";
   }
 
+  addHighlight() {
+    this._cellElement.classList.add("pattern-hover");
+    this._cellElement.innerHTML = this._randomChinese();
+  }
+
+  removeHighlight() {
+    this._cellElement.classList.remove("pattern-hover");
+    this._cellElement.innerHTML = "";
+  }
+
   getRow() {
     return this._row;
   }
