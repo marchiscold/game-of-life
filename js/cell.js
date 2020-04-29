@@ -8,6 +8,7 @@ export class Cell {
     this._cellElement.classList.add(state);
     this._toLive = null;
     this._toDie = null;
+    this._isHighlighted = false;
     if (state === "alive") {
       this._cellElement.innerHTML = this._randomChinese();
     } else {
@@ -36,17 +37,25 @@ export class Cell {
     this._cellElement.classList.add("dead");
     this._cellElement.classList.remove("alive");
     this._state = "dead";
-    this._cellElement.innerHTML = "";
+    if (!this._isHighlighted) {
+      this._cellElement.innerHTML = "";
+    }
   }
 
   addHighlight() {
+    this._isHighlighted = true;
     this._cellElement.classList.add("pattern-hover");
-    this._cellElement.innerHTML = this._randomChinese();
+    if (this.isDead()) {
+      this._cellElement.innerHTML = this._randomChinese();
+    }
   }
 
   removeHighlight() {
+    this._isHighlighted = false;
     this._cellElement.classList.remove("pattern-hover");
-    this._cellElement.innerHTML = "";
+    if (this.isDead()) {
+      this._cellElement.innerHTML = "";
+    }
   }
 
   getRow() {
