@@ -17,8 +17,7 @@ export class EventHandler {
       this._controls.setGameSpeed(parseFloat(ev.target.value));
     });
     $(document).on('mouseover', '.cell', ev => {
-      this._board.highlightWithPattern('glider', ev.target);
-      this._board.highlightCell(ev.target);
+      this._board.highlight(ev.target);
       if (ev.which == 1) {
         this._board.toggleCell(ev.target);
       }
@@ -42,18 +41,22 @@ export class EventHandler {
     $(document).on('click', '#reset', ev => {
       this._controls.reset();
     });
+    $(document).on('click', '.pattern-button', ev => {
+      this._board.setHighlightPattern(ev.target.dataset.name);
+    });
     $(document).on('mousedown', ev => {
       if (this._board.contains(ev.target)) {
         ev.preventDefault();
       }
-      if (!ev.target.matches('.cell')) return;
+    });
+    $(document).on('mousedown', '.cell', ev => {
       if (ev.which != 1) return;
 
       if (!this._game.isPaused()) {
         this._game.pauseForDrawing();
       }
-      this._board.toggleCell(ev.target);
-    });
+      this._board.onMouseDown(ev.target);
+    })
     $(document).on('mouseup', ev => {
       this._game.resumeIfPausedForDrawing();
     });

@@ -9,7 +9,9 @@ export class Board {
     this._cols = colCount;
     [this._cellArr, this._cellMap] = this._createDOMCells();
     this._patterns = new PatternCollection();
+    this._highlightPattern = 'glider';
     this._highlightedCells = [];
+
     this._initDOMBoard(this._gameElement);
   }
 
@@ -38,6 +40,21 @@ export class Board {
     cell.isAlive() ? cell.setDead() : cell.setAlive();
   }
 
+  setHighlightPattern(patternName) {
+    this._highlightPattern = patternName;
+  }
+
+  onMouseDown(cellElem) {
+    if (this._highlightPattern != '') {
+      let offsetTop = this._cellMap.get(cellElem).getRow();
+      let offsetLeft = this._cellMap.get(cellElem).getCol();
+      this.drawPattern(this._highlightPattern, offsetTop, offsetLeft);
+      this._highlightPattern = '';
+    } else {
+      this.toggleCell(cellElem);
+    }
+  }
+
   clear() {
     this._cellMap.forEach(cell => {
       cell.setDead();
@@ -52,6 +69,14 @@ export class Board {
 
   contains(cellElem) {
     return this._gameElement.contains(cellElem);
+  }
+
+  highlight(cellElem) {
+    if (this._highlightPattern != '') {
+      this.highlightWithPattern(this._highlightPattern, cellElem);
+    } else {
+      this.highlightCell(cellElem);
+    }
   }
 
   highlightWithPattern(patternName, cellElem) {
@@ -86,10 +111,10 @@ export class Board {
     })
   }
 
-  drawPattern(patternName) {
+  drawPattern(patternName, top, left) {
     let pattern = this._patterns.get(patternName);
-    let offsetTop = parseInt(this._rows/2);
-    let offsetLeft = parseInt(this._cols/2);
+    let offsetTop = top ? top : parseInt(this._rows/2);
+    let offsetLeft = left ? left : parseInt(this._cols/2);
     this.clear();
     for (let row = 0; row < pattern.height; row++) {
       for (let col = 0; col < pattern.width; col++) {
