@@ -49,6 +49,7 @@ export class Board {
       let offsetTop = this._cellMap.get(cellElem).getRow();
       let offsetLeft = this._cellMap.get(cellElem).getCol();
       this.drawPattern(this._highlightPattern, offsetTop, offsetLeft);
+      this.removePatternHighlight();
       this._highlightPattern = '';
     } else {
       this.toggleCell(cellElem);
