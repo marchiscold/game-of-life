@@ -11,6 +11,7 @@ export class EventHandler {
   _initListeners() {
     $(document).on('change', '.game-patterns-select', ev => {
       this._controls.stop();
+      this._board.clear();
       this._board.drawPattern(ev.target.value);
     })
     $(document).on('input', '#range', ev => {

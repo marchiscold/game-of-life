@@ -89,7 +89,13 @@ export class Board {
     for (let row = 0; row < pattern.height; row++) {
       for (let col = 0; col < pattern.width; col++) {
         let gameRow = row + offsetTop;
+        if (gameRow >= this._rows) {
+          gameRow = gameRow - this._rows;
+        }
         let gameCol = col + offsetLeft;
+        if (gameCol >= this._cols) {
+          gameCol = gameCol - this._cols;
+        }
         let cell = this._cellArr[gameRow][gameCol];
         if (pattern.isAlive(row, col)) {
           this._highlightedCells.push(cell);
@@ -114,13 +120,18 @@ export class Board {
 
   drawPattern(patternName, top, left) {
     let pattern = this._patterns.get(patternName);
-    let offsetTop = top ? top : parseInt(this._rows/2);
-    let offsetLeft = left ? left : parseInt(this._cols/2);
-    this.clear();
+    let offsetTop = top != undefined ? top : parseInt(this._rows/2);
+    let offsetLeft = left != undefined ? left : parseInt(this._cols/2);
     for (let row = 0; row < pattern.height; row++) {
       for (let col = 0; col < pattern.width; col++) {
         let gameRow = row + offsetTop;
+        if (gameRow >= this._rows) {
+          gameRow = gameRow - this._rows;
+        }
         let gameCol = col + offsetLeft;
+        if (gameCol >= this._cols) {
+          gameCol = gameCol - this._cols;
+        }
         let cell = this._cellArr[gameRow][gameCol];
         if (pattern.isAlive(row, col)) {
           cell.setAlive();
