@@ -4,26 +4,38 @@
   padding: 0px;
 }
 
-body {
+html, body {
   background-color: #000;
+  height: 100%;
 }
 
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  max-height: 170px;
+  min-height: 80px;
   color: green;
-  width: 500px;
-  margin: 30px auto 20px auto;
   font-size: 40px;
+}
+
+.header__text {
+  width: 500px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .wrapper {
   display: flex;
   margin: 0 auto;
   margin-top: 8px;
+  margin-bottom: 20px;
   background-color: #000;
   position: relative;
 }
