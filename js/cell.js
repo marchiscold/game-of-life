@@ -44,15 +44,18 @@ export class Cell {
 
   addHighlight() {
     this._isHighlighted = true;
-    this._cellElement.classList.add("pattern-hover");
     if (this.isDead()) {
+      this._cellElement.classList.add("pattern-hover");
       this._cellElement.innerHTML = this._randomChinese();
+    } else {
+      this._cellElement.classList.add("pattern-hover-alive");
     }
   }
 
   removeHighlight() {
     this._isHighlighted = false;
     this._cellElement.classList.remove("pattern-hover");
+    this._cellElement.classList.remove("pattern-hover-alive");
     if (this.isDead()) {
       this._cellElement.innerHTML = "";
     }

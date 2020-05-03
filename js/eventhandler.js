@@ -56,7 +56,7 @@ export class EventHandler {
       if (!this._game.isPaused()) {
         this._game.pauseForDrawing();
       }
-      this._board.onMouseDown(ev.target);
+      this._board.onMouseDown(ev.target, ev.shiftKey);
     })
     $(document).on('mouseup', ev => {
       this._game.resumeIfPausedForDrawing();

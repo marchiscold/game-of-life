@@ -44,13 +44,15 @@ export class Board {
     this._highlightPattern = patternName;
   }
 
-  onMouseDown(cellElem) {
+  onMouseDown(cellElem, shiftKey) {
     if (this._highlightPattern != '') {
       let offsetTop = this._cellMap.get(cellElem).getRow();
       let offsetLeft = this._cellMap.get(cellElem).getCol();
       this.drawPattern(this._highlightPattern, offsetTop, offsetLeft);
-      this.removePatternHighlight();
-      this._highlightPattern = '';
+      if (!shiftKey) {
+        this.removePatternHighlight();
+        this._highlightPattern = '';
+      }
     } else {
       this.toggleCell(cellElem);
     }
@@ -99,10 +101,10 @@ export class Board {
         let cell = this._cellArr[gameRow][gameCol];
         if (pattern.isAlive(row, col)) {
           this._highlightedCells.push(cell);
-          this._renderHighlights();
         }
       }
     }
+    this._renderHighlights();
   }
 
   removePatternHighlight() {

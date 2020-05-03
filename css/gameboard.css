@@ -25,6 +25,10 @@
 .cell.pattern-hover {
   opacity: 0.5;
 }
+
+.cell.pattern-hover-alive {
+  opacity: 0.80;
+}
 .cell.dead {
   /* opacity: 0; */
   /* background-color: #000; */
