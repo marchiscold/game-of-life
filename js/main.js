@@ -1,7 +1,8 @@
 import { Board } from "./board.js";
 import { EventHandler } from "./eventhandler.js";
-import { Game } from './game.js';
+import { Game } from "./game.js";
 import { Pattern } from "./pattern.js";
+import {PatternContainer} from "./pattern-container.js";
 
 const COLUMN_COUNT = 75;
 const ROW_COUNT = 50;
@@ -14,7 +15,8 @@ gameElement.style.height = ROW_COUNT * CELL_WIDTH + 1 + "px";
 let board = new Board(gameElement, ROW_COUNT, COLUMN_COUNT, CELL_WIDTH);
 let game = new Game(board);
 let handler = new EventHandler(board, game);
-
+let patternContainer = new PatternContainer();
+$('.pattern-list').append(patternContainer.getSelectors('spaceships'));
 
 
 

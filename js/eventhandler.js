@@ -45,6 +45,10 @@ export class EventHandler {
     $(document).on('click', '.pattern-button', ev => {
       this._board.setHighlightPattern(ev.target.dataset.name);
     });
+    $(document).on('click', '.pattern-nav__button', ev => {
+      $('.pattern-nav__button').removeClass('active');
+      ev.target.classList.add('active');
+    })
     $(document).on('mousedown', ev => {
       if (this._board.contains(ev.target)) {
         ev.preventDefault();
