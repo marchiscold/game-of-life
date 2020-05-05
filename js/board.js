@@ -1,14 +1,14 @@
 import {Cell} from './cell.js';
 import {Pattern} from './pattern.js';
-import { PatternCollection } from './patternCollection.js';
+import { PatternCollection } from './pattern-collection.js';
 
 export class Board {
-  constructor(gameElement, rowCount, colCount) {
+  constructor(gameElement, rowCount, colCount, patterns) {
     this._gameElement = gameElement;
     this._rows = rowCount;
     this._cols = colCount;
     [this._cellArr, this._cellMap] = this._createDOMCells();
-    this._patterns = new PatternCollection();
+    this._patterns = patterns;
     this._highlightPattern = 'glider';
     this._highlightedCells = [];
 

@@ -49,12 +49,7 @@ export class EventHandler {
       this._board.setHighlightPattern(ev.target.dataset.name);
     });
     $(document).on('click', '.pattern-nav__button', ev => {
-      $('.pattern-nav__button').removeClass('active');
-      ev.target.classList.add('active');
-
-      let selectors = this._patternContainer.getSelectors(ev.target.textContent);
-      $('.pattern-list').empty()
-                        .append(selectors);
+      this._patternContainer.selectPage(ev.target);
     })
     $(document).on('mousedown', ev => {
       if (this._board.contains(ev.target)) {

@@ -1,11 +1,27 @@
+import { PatternSelector } from "./pattern-selector.js";
+
 export class PatternContainer {
-  constructor () {
+  constructor (patterns) {
+    this._patterns = patterns;
     this._selectors = new Map();
     this._initPages();
+    this._initActivePage();
   }
 
-  getSelectors (patternType) {
+  selectPage(pageTab) {
+    $('.pattern-nav__button').removeClass('active');
+    pageTab.classList.add('active');
+    $('.pattern-list').empty()
+                      .append(this._selectors.get(pageTab.textContent));
+  }
+
+  _getSelectors (patternType) {
     return this._selectors.get(patternType);
+  }
+
+  _initActivePage() {
+    let selectorsName = $('.pattern-nav__button.active').text();
+    $('.pattern-list').append(this._getSelectors(selectorsName));
   }
 
   _initPages () {
@@ -16,6 +32,7 @@ export class PatternContainer {
 
   _createSpaceships() {
     let spaceships = [];
+    // spaceships.push(new PatternSelector(patterns.get('glider'));
     spaceships.push($('<div class="pattern"><input class="pattern-button" type="button" value="glider" data-name="glider"></div>')[0]);
     spaceships.push($('<div class="pattern"><input class="pattern-button" type="button" value="spaceship" data-name="lwss"></div>')[0]);
     return spaceships;
