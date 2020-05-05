@@ -33,5 +33,25 @@ export class PatternCollection {
                 [1, 0, 0, 0, 0, 0, 1],
                 [0, 1, 1, 1, 1, 1, 1]];
     this._patternMap.set('hwss', new Pattern(hwss));
+
+    let block = [[1, 1],
+                 [1, 1]];
+    this._patternMap.set('block', new Pattern(block));
+
+    let beehive = [[0, 1, 1, 0],
+                   [1, 0, 0, 1],
+                   [0, 1, 1, 0]];
+    this._patternMap.set('beehive', new Pattern(beehive));
+
+    let blinker = [[1],
+                   [1],
+                   [1]];
+    this._patternMap.set('blinker', new Pattern(blinker));
+
+    let beacon = [[1, 1, 0, 0],
+                  [1, 1, 0, 0],
+                  [0, 0, 1, 1],
+                  [0, 0, 1, 1]];
+    this._patternMap.set('beacon', new Pattern(beacon));
   }
 }

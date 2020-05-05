@@ -1,10 +1,13 @@
 import { Controls } from "./controls.js";
+// import {PatternContainer} from "./pattern-container.js";
+
 
 export class EventHandler {
-  constructor(board, game) {
+  constructor(board, game, patternContainer) {
     this._controls = new Controls(game, board);
     this._board = board;
     this._game = game;
+    this._patternContainer = patternContainer;
     this._initListeners();
   }
 
@@ -48,6 +51,10 @@ export class EventHandler {
     $(document).on('click', '.pattern-nav__button', ev => {
       $('.pattern-nav__button').removeClass('active');
       ev.target.classList.add('active');
+
+      let selectors = this._patternContainer.getSelectors(ev.target.textContent);
+      $('.pattern-list').empty()
+                        .append(selectors);
     })
     $(document).on('mousedown', ev => {
       if (this._board.contains(ev.target)) {

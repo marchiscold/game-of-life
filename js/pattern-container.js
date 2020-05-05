@@ -22,10 +22,16 @@ export class PatternContainer {
   }
 
   _createStatic() {
-
+    let staticLife = [];
+    staticLife.push($('<div class="pattern"><input class="pattern-button" type="button" value="block" data-name="block"></div>')[0]);
+    staticLife.push($('<div class="pattern"><input class="pattern-button" type="button" value="beehive" data-name="beehive"></div>')[0]);
+    return staticLife;
   }
 
   _createOscillators () {
-    
+    let oscillators = [];
+    oscillators.push($('<div class="pattern"><input class="pattern-button" type="button" value="blinker" data-name="blinker"></div>')[0]);
+    oscillators.push($('<div class="pattern"><input class="pattern-button" type="button" value="beacon" data-name="beacon"></div>')[0]);
+    return oscillators;
   }
 }

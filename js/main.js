@@ -14,9 +14,10 @@ gameElement.style.height = ROW_COUNT * CELL_WIDTH + 1 + "px";
 
 let board = new Board(gameElement, ROW_COUNT, COLUMN_COUNT, CELL_WIDTH);
 let game = new Game(board);
-let handler = new EventHandler(board, game);
 let patternContainer = new PatternContainer();
-$('.pattern-list').append(patternContainer.getSelectors('spaceships'));
+let selectorsName = $('.pattern-nav__button.active').text();
+$('.pattern-list').append(patternContainer.getSelectors(selectorsName));
+let handler = new EventHandler(board, game, patternContainer);
 
 
 
