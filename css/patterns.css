@@ -62,3 +62,15 @@
   display: flex;
   justify-content: center;
 }
+
+.button-cell {
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border: 1px solid #000;
+}
+
+.pattern-selector {
+  display: flex;
+  flex-direction: column;
+}
