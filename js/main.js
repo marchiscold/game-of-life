@@ -1,7 +1,6 @@
-import { Board } from "./board.js";
+import { GameBoard } from "./game-board.js";
 import { EventHandler } from "./eventhandler.js";
 import { Game } from "./game.js";
-import { Pattern } from "./pattern.js";
 import {PatternService} from "./pattern-container.js";
 import {PatternCollection} from "./pattern-collection.js";
 
@@ -15,7 +14,7 @@ gameElement.style.height = ROW_COUNT * CELL_WIDTH + 1 + "px";
 
 let patterns = new PatternCollection();
 let patternService = new PatternService(patterns);
-let board = new Board(gameElement, ROW_COUNT, COLUMN_COUNT, patternService);
+let board = new GameBoard(gameElement, ROW_COUNT, COLUMN_COUNT, patternService);
 let game = new Game(board);
 let handler = new EventHandler(board, game, patternService);
 

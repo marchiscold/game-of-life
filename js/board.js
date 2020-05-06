@@ -1,143 +1,52 @@
 import {Cell} from './cell.js';
 
 export class Board {
-  constructor(gameElement, rowCount, colCount, patternService) {
-    this._gameElement = gameElement;
-    this._rows = rowCount;
-    this._cols = colCount;
-    [this._cellArr, this._cellMap] = this._createDOMCells();
-    this._patterns = patternService;
-    this._highlightPattern = 'glider';
-    this._highlightedCells = [];
-
-    this._initDOMBoard(this._gameElement);
+  constructor () {
   }
 
-  update() {
-    this._cellMap.forEach(cell => {
-      this._markCells(this._aliveNeighbors(cell), cell);
+  _initDOMBoard(gameElement) {
+    let rows = this._makeRows();
+    rows.forEach((row, rowIndex) => {
+      for (let colIndex = 0; colIndex < this._cols; colIndex++) {
+        row.append(this._cellArr[rowIndex][colIndex].getCellElement());
+      }
     });
+  
+    gameElement.append(...rows);
   }
 
-  render() {
-    this._cellMap.forEach(cell => {
-      cell.render();
-    })
+  _makeRows() {
+    let rows = [];
+    let row = document.createElement("div");
+    row.className = "row";
+
+    for (let i = 0; i < this._rows; i++) {
+      rows.push(row.cloneNode(false));
+    }
+    return rows;
   }
 
-  highlightCell(cellElem) {
-    cellElem.classList.add('highlight');
-  }
-
-  revertHighlight(cellElem) {
-    cellElem.classList.remove('highlight');
-  }
-
-  toggleCell(cellElem) {
-    let cell = this._cellMap.get(cellElem);
-    cell.isAlive() ? cell.setDead() : cell.setAlive();
-  }
-
-  setHighlightPattern(patternName) {
-    this._highlightPattern = patternName;
-  }
-
-  onMouseDown(cellElem, shiftKey) {
-    if (this._highlightPattern != '') {
-      let offsetTop = this._cellMap.get(cellElem).getRow();
-      let offsetLeft = this._cellMap.get(cellElem).getCol();
-      this.drawPattern(this._highlightPattern, offsetTop, offsetLeft);
-      if (!shiftKey) {
-        this.removePatternHighlight();
-        this._highlightPattern = '';
-      }
-    } else {
-      this.toggleCell(cellElem);
+  _markCells (aliveNum, cell) {
+    if (aliveNum === 3 && cell.isDead()) {
+      cell.markAlive();
+    } else if (aliveNum < 2 || aliveNum > 3) {
+      cell.markDead();
     }
   }
 
-  clear() {
-    this._cellMap.forEach(cell => {
-      cell.setDead();
-    })
-  }
-
-  populate() {
-    this._cellMap.forEach((cell) => {
-      Math.random() > 0.83 ? cell.setAlive() : cell.setDead();
-    });
-  }
-
-  contains(cellElem) {
-    return this._gameElement.contains(cellElem);
-  }
-
-  highlight(cellElem) {
-    if (this._highlightPattern != '') {
-      this.highlightWithPattern(this._highlightPattern, cellElem);
-    } else {
-      this.highlightCell(cellElem);
-    }
-  }
-
-  highlightWithPattern(patternName, cellElem) {
-    let cell = this._cellMap.get(cellElem);
-    let offsetTop = cell.getRow();
-    let offsetLeft = cell.getCol();
-    let pattern = this._patterns.getPattern(patternName);
-
-    for (let row = 0; row < pattern.height; row++) {
-      for (let col = 0; col < pattern.width; col++) {
-        let gameRow = row + offsetTop;
-        if (gameRow >= this._rows) {
-          gameRow = gameRow - this._rows;
-        }
-        let gameCol = col + offsetLeft;
-        if (gameCol >= this._cols) {
-          gameCol = gameCol - this._cols;
-        }
-        let cell = this._cellArr[gameRow][gameCol];
-        if (pattern.isAlive(row, col)) {
-          this._highlightedCells.push(cell);
-        }
+  _createDOMCells () {
+    let cellArr = [];
+    let cellMap = new Map();
+    for (let row = 0; row < this._rows; row++) {
+      cellArr[row] = [];
+      for (let col = 0; col < this._cols; col++) {
+        let state = Math.random() > 0.83 ? "alive" : "dead";
+        let cell = new Cell(row, col, state)
+        cellArr[row][col] = cell;
+        cellMap.set(cell.getCellElement(), cell);
       }
     }
-    this._renderHighlights();
-  }
-
-  removePatternHighlight() {
-    this._highlightedCells.forEach(cell => {
-      cell.removeHighlight();
-    })
-    this._highlightedCells = [];
-  }
-
-  _renderHighlights() {
-    this._highlightedCells.forEach(cell => {
-      cell.addHighlight();
-    })
-  }
-
-  drawPattern(patternName, top, left) {
-    let pattern = this._patterns.getPattern(patternName);
-    let offsetTop = top != undefined ? top : parseInt(this._rows/2);
-    let offsetLeft = left != undefined ? left : parseInt(this._cols/2);
-    for (let row = 0; row < pattern.height; row++) {
-      for (let col = 0; col < pattern.width; col++) {
-        let gameRow = row + offsetTop;
-        if (gameRow >= this._rows) {
-          gameRow = gameRow - this._rows;
-        }
-        let gameCol = col + offsetLeft;
-        if (gameCol >= this._cols) {
-          gameCol = gameCol - this._cols;
-        }
-        let cell = this._cellArr[gameRow][gameCol];
-        if (pattern.isAlive(row, col)) {
-          cell.setAlive();
-        }
-      }
-    }
+    return [cellArr, cellMap];
   }
 
   _aliveNeighbors(cell) {
@@ -166,50 +75,5 @@ export class Board {
       aliveNeighbors += this._cellArr[tempRow][tempCol].isAlive() ? 1 : 0;
     });
     return aliveNeighbors;
-  }
-
-  _markCells (aliveNum, cell) {
-    if (aliveNum === 3 && cell.isDead()) {
-      cell.markAlive();
-    } else if (aliveNum < 2 || aliveNum > 3) {
-      cell.markDead();
-    }
-  }
-
-  _createDOMCells () {
-    let cellArr = [];
-    let cellMap = new Map();
-    for (let row = 0; row < this._rows; row++) {
-      cellArr[row] = [];
-      for (let col = 0; col < this._cols; col++) {
-        let state = Math.random() > 0.83 ? "alive" : "dead";
-        let cell = new Cell(row, col, state)
-        cellArr[row][col] = cell;
-        cellMap.set(cell.getCellElement(), cell);
-      }
-    }
-    return [cellArr, cellMap];
-  }
-
-  _initDOMBoard(gameElement) {
-    let rows = this._makeRows();
-    rows.forEach((row, rowIndex) => {
-      for (let colIndex = 0; colIndex < this._cols; colIndex++) {
-        row.append(this._cellArr[rowIndex][colIndex].getCellElement());
-      }
-    });
-
-    gameElement.append(...rows);
-  }
-
-  _makeRows() {
-    let rows = [];
-    let row = document.createElement("div");
-    row.className = "row";
-
-    for (let i = 0; i < this._rows; i++) {
-      rows.push(row.cloneNode(false));
-    }
-    return rows;
   }
 }
