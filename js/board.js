@@ -1,14 +1,12 @@
 import {Cell} from './cell.js';
-import {Pattern} from './pattern.js';
-import { PatternCollection } from './pattern-collection.js';
 
 export class Board {
-  constructor(gameElement, rowCount, colCount, patterns) {
+  constructor(gameElement, rowCount, colCount, patternService) {
     this._gameElement = gameElement;
     this._rows = rowCount;
     this._cols = colCount;
     [this._cellArr, this._cellMap] = this._createDOMCells();
-    this._patterns = patterns;
+    this._patterns = patternService;
     this._highlightPattern = 'glider';
     this._highlightedCells = [];
 
@@ -86,7 +84,7 @@ export class Board {
     let cell = this._cellMap.get(cellElem);
     let offsetTop = cell.getRow();
     let offsetLeft = cell.getCol();
-    let pattern = this._patterns.get(patternName);
+    let pattern = this._patterns.getPattern(patternName);
 
     for (let row = 0; row < pattern.height; row++) {
       for (let col = 0; col < pattern.width; col++) {
@@ -121,7 +119,7 @@ export class Board {
   }
 
   drawPattern(patternName, top, left) {
-    let pattern = this._patterns.get(patternName);
+    let pattern = this._patterns.getPattern(patternName);
     let offsetTop = top != undefined ? top : parseInt(this._rows/2);
     let offsetLeft = left != undefined ? left : parseInt(this._cols/2);
     for (let row = 0; row < pattern.height; row++) {

@@ -1,13 +1,11 @@
 import { Controls } from "./controls.js";
-// import {PatternContainer} from "./pattern-container.js";
-
 
 export class EventHandler {
-  constructor(board, game, patternContainer) {
+  constructor(board, game, patternService) {
     this._controls = new Controls(game, board);
     this._board = board;
     this._game = game;
-    this._patternContainer = patternContainer;
+    this._patternService = patternService;
     this._initListeners();
   }
 
@@ -49,7 +47,7 @@ export class EventHandler {
       this._board.setHighlightPattern(ev.target.dataset.name);
     });
     $(document).on('click', '.pattern-nav__button', ev => {
-      this._patternContainer.selectPage(ev.target);
+      this._patternService.selectPage(ev.target);
     })
     $(document).on('mousedown', ev => {
       if (this._board.contains(ev.target)) {

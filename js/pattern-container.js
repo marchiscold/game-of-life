@@ -1,11 +1,15 @@
 import { PatternSelector } from "./pattern-selector.js";
 
-export class PatternContainer {
+export class PatternService {
   constructor (patterns) {
     this._patterns = patterns;
     this._selectors = new Map();
     this._initPages();
     this._initActivePage();
+  }
+
+  getPattern(patternName) {
+    return this._patterns.get(patternName);
   }
 
   selectPage(pageTab) {
@@ -30,25 +34,34 @@ export class PatternContainer {
     this._selectors.set('oscillators', this._createOscillators());
   }
 
+  _createPatternButton(buttonName, patternName) {
+    return $(`<div class="pattern">
+                <input class="pattern-button" 
+                       type="button" 
+                       value="${buttonName}" 
+                       data-name="${patternName}">
+              </div>`)[0];
+  }
+
   _createSpaceships() {
     let spaceships = [];
     // spaceships.push(new PatternSelector(patterns.get('glider'));
-    spaceships.push($('<div class="pattern"><input class="pattern-button" type="button" value="glider" data-name="glider"></div>')[0]);
-    spaceships.push($('<div class="pattern"><input class="pattern-button" type="button" value="spaceship" data-name="lwss"></div>')[0]);
+    spaceships.push(this._createPatternButton('glider', 'glider'));
+    spaceships.push(this._createPatternButton('spaceship', 'lwss'));
     return spaceships;
   }
 
   _createStatic() {
     let staticLife = [];
-    staticLife.push($('<div class="pattern"><input class="pattern-button" type="button" value="block" data-name="block"></div>')[0]);
-    staticLife.push($('<div class="pattern"><input class="pattern-button" type="button" value="beehive" data-name="beehive"></div>')[0]);
+    staticLife.push(this._createPatternButton('block', 'block'));
+    staticLife.push(this._createPatternButton('beehive', 'beehive'));
     return staticLife;
   }
 
   _createOscillators () {
     let oscillators = [];
-    oscillators.push($('<div class="pattern"><input class="pattern-button" type="button" value="blinker" data-name="blinker"></div>')[0]);
-    oscillators.push($('<div class="pattern"><input class="pattern-button" type="button" value="beacon" data-name="beacon"></div>')[0]);
+    oscillators.push(this._createPatternButton('blinker', 'blinker'));
+    oscillators.push(this._createPatternButton('beacon', 'beacon'));
     return oscillators;
   }
 }
