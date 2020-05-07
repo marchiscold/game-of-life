@@ -64,13 +64,23 @@
 }
 
 .button-cell {
-  width: 10px;
-  height: 10px;
-  background-color: green;
-  border: 1px solid #000;
+  color: hsl(120, 70%, 47%);
+  font-weight: bolder;
+  font-size: 11px;
+  background-color: #000;
+  overflow: hidden;
 }
 
 .pattern-selector {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid green;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.pattern-selector:hover {
+  border: 2px solid green;
 }

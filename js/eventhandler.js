@@ -46,6 +46,11 @@ export class EventHandler {
     $(document).on('click', '.pattern-button', ev => {
       this._board.setHighlightPattern(ev.target.dataset.name);
     });
+    $(document).on('click', '.pattern-selector', ev => {
+      this._board.setHighlightPattern(ev.target.closest('.pattern-selector')
+                                               .dataset.name);
+      // console.log(ev.currentTarget);
+    })
     $(document).on('click', '.pattern-nav__button', ev => {
       this._patternService.selectPage(ev.target);
     })

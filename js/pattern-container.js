@@ -69,26 +69,33 @@ export class PatternService {
   }
 
   _createButton(buttonName, patternName) {
-    let wrapper = $('<div>', {'class': 'pattern-selector'});
-    // wrapper.text('hello');
+    let cellWidth = 12;
+    let wrapper = $('<div>', {'class': 'pattern-selector',
+                              'data-name' : patternName});
     let pattern = this._patterns.get(patternName);
     let rowCount = pattern.height;
     let colCount = pattern.width;
-    let rows = this._makeRows(rowCount);
-    rows.forEach(row => {
-      for (let i = 0; i < colCount; i++) {
-        row.append($('<div>', {'class': 'button-cell'}));
+    let rows = [];
+    for (let row = 0; row < rowCount; row++) {
+      rows.push($('<div>', {'class': 'row'}));
+      for (let col = 0; col < colCount; col++) {
+        let $cell = $('<div>', {'class': 'button-cell'});
+        $cell.css({width: cellWidth,
+                   height: cellWidth});
+        $cell.text(pattern.isAlive(row, col) ? this._randomChinese() : '');
+        rows[row].append($cell);
       }
-    });
+    }
+    wrapper.css({width: colCount*cellWidth + 20 + 'px',
+                 height: rowCount*cellWidth + 20 + 'px'});
     wrapper.append(rows);
     return wrapper;
   }
 
-  _makeRows (rowCount) {
-    let rows = [];
-    for (let i = 0; i < rowCount; i++) {
-      rows.push($('<div>', {'class': 'row'}));
-    }
-    return rows;
+  _randomChinese () {
+    let chinese = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+    let index =  Math.floor(Math.random() * chinese.length);
+    return chinese[index];
   }
+
 }
