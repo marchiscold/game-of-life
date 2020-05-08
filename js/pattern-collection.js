@@ -11,10 +11,16 @@ export class PatternCollection {
   }
 
   _initCollection() {
+    (async () => {
+      let response = await fetch('/json/spaceships.json');
+      let result = await response.json();
+      console.log(result.glider.arr);
+    })();
+
     let glider = [[0, 0, 1],
                   [1, 0, 1],
                   [0, 1, 1]];
-    this._patternMap.set('glider', new Pattern(glider));
+    this._patternMap.set('glider', new Pattern(glider, 'glider'));
 
     let lwss = [[0, 0, 0, 1, 0],
                 [0, 0, 0, 0, 1],
@@ -33,6 +39,14 @@ export class PatternCollection {
                 [1, 0, 0, 0, 0, 0, 1],
                 [0, 1, 1, 1, 1, 1, 1]];
     this._patternMap.set('hwss', new Pattern(hwss));
+
+    
+    // let obj = {};
+    // obj.glider = new Pattern(glider, 'glider');
+    // obj.lwss = new Pattern(lwss, 'light weight spaceship');
+    // obj.mwss = new Pattern(mwss, 'middle weight spaceship');
+    // obj.hwss = new Pattern(hwss, 'heavyweight spaceship');
+    // console.log(JSON.stringify(obj));
 
     let block = [[1, 1],
                  [1, 1]];
