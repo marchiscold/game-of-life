@@ -16,6 +16,13 @@
   border-bottom: .1px solid #333;
   overflow: hidden;
   cursor: default;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .cell.highlight {

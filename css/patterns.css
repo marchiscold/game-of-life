@@ -24,8 +24,6 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  /* border: 1px solid green; */
-  /* border-bottom: 2px solid green; */
   flex: 1 1 0;
   text-align: center;
   min-width: 93px;
@@ -45,8 +43,6 @@
 }
 
 .pattern-nav__button.active {
-  /* border-color: #000; */
-  /* border-top-color: green; */
   background-color: green;
   color: #000;
 }
@@ -63,11 +59,18 @@
 }
 
 .button-cell {
-  color: hsl(120, 70%, 47%);
+  color: hsl(120, 70%, 37%);
   font-weight: bolder;
   font-size: 11px;
   background-color: #000;
   overflow: hidden;
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .pattern-selector {
@@ -82,4 +85,13 @@
 
 .pattern-selector:hover {
   border: 2px solid green;
+}
+
+.pattern-selector:hover .button-cell {
+  color: hsl(120, 70%, 47%);
+
+}
+
+.pattern-selector.active {
+  
 }

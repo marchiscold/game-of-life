@@ -59,6 +59,9 @@ export class EventHandler {
         ev.preventDefault();
       }
     });
+    $(document).on('mousedown', '.button-cell', ev => {
+      ev.preventDefault();
+    })
     $(document).on('mousedown', '.cell', ev => {
       if (ev.which != 1) return;
 
