@@ -7,7 +7,6 @@ export class PatternService {
     this._selectors = new Map();
     this._initPages();
     this._initActivePage();
-    $('.pattern-list').append(this._createButton('smth', 'glider'));
   }
 
   getPattern(patternName) {
@@ -38,7 +37,6 @@ export class PatternService {
 
   _createSpaceships() {
     let spaceships = [];
-    // spaceships.push(new PatternSelector(patterns.get('glider'));
     spaceships.push(this._createPatternButton('glider', 'glider'));
     spaceships.push(this._createPatternButton('spaceship', 'lwss'));
     return spaceships;
@@ -58,17 +56,17 @@ export class PatternService {
     return oscillators;
   }
   
-  _createPatternButton(buttonName, patternName) {
+  // _createPatternButton(buttonName, patternName) {
     
-    return $(`<div class="pattern">
-                <input class="pattern-button" 
-                       type="button" 
-                       value="${buttonName}" 
-                       data-name="${patternName}">
-              </div>`)[0];
-  }
+  //   return $(`<div class="pattern">
+  //               <input class="pattern-button" 
+  //                      type="button" 
+  //                      value="${buttonName}" 
+  //                      data-name="${patternName}">
+  //             </div>`)[0];
+  // }
 
-  _createButton(buttonName, patternName) {
+  _createPatternButton(buttonName, patternName) {
     let cellWidth = 12;
     let wrapper = $('<div>', {'class': 'pattern-selector',
                               'data-name' : patternName});

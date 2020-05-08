@@ -2,12 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   align-content: flex-start;
   border: 1.5px solid green;
-  /* border-top-color: #000; */
   height: 100%;
-
+  padding-top: 20px;
 }
 
 .pattern {
