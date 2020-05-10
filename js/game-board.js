@@ -102,7 +102,7 @@ export class GameBoard extends Board {
           gameCol = gameCol - this._cols;
         }
         let cell = this._cellArr[gameRow][gameCol];
-        if (pattern.isAlive(row, col)) {
+        if (pattern.arr[row][col]) {
           this._highlightedCells.push(cell);
         }
       }
@@ -138,7 +138,7 @@ export class GameBoard extends Board {
           gameCol = gameCol - this._cols;
         }
         let cell = this._cellArr[gameRow][gameCol];
-        if (pattern.isAlive(row, col)) {
+        if (pattern.arr[row][col]) {
           cell.setAlive();
         }
       }

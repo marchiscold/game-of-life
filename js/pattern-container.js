@@ -1,12 +1,9 @@
-import { PatternSelector } from "./pattern-selector.js";
 import {PatternCollection} from "./pattern-collection.js";
 
 export class PatternService {
   constructor () {
-    this._patterns = new PatternCollection();
-    this._selectors = new Map();
-    this._initPages();
-    this._initActivePage();
+    this._patterns = new PatternCollection(this);
+    this._selectorPages = new Map();
   }
 
   getPattern(patternName) {
@@ -17,22 +14,19 @@ export class PatternService {
     $('.pattern-nav__button').removeClass('active');
     tabElem.classList.add('active');
     $('.pattern-list').empty()
-                      .append(this._selectors.get(tabElem.textContent));
-  }
-
-  _getSelectors (patternType) {
-    return this._selectors.get(patternType);
+                      .append(this._selectorPages.get(tabElem.dataset.pageName));
   }
 
   _initActivePage() {
-    let selectorsName = $('.pattern-nav__button.active').text();
-    $('.pattern-list').append(this._getSelectors(selectorsName));
+    let tabElem = $('.pattern-nav__button.active')[0];
+    this.selectPage(tabElem);
   }
 
   _initPages () {
-    this._selectors.set('spaceships', this._createSpaceships());
-    this._selectors.set('static', this._createStatic());
-    this._selectors.set('oscillators', this._createOscillators());
+    this._selectorPages.set('spaceships', this._createSpaceships());
+    this._selectorPages.set('static', this._createStatic());
+    this._selectorPages.set('oscillators', this._createOscillators());
+    this._initActivePage();
   }
 
   _createSpaceships() {
@@ -71,6 +65,7 @@ export class PatternService {
     let wrapper = $('<div>', {'class': 'pattern-selector',
                               'data-name' : patternName});
     let pattern = this._patterns.get(patternName);
+    console.log('pattern: ', pattern);
     let rowCount = pattern.height;
     let colCount = pattern.width;
     let rows = [];
@@ -80,7 +75,7 @@ export class PatternService {
         let $cell = $('<div>', {'class': 'button-cell'});
         $cell.css({width: cellWidth,
                    height: cellWidth});
-        $cell.text(pattern.isAlive(row, col) ? this._randomChinese() : '');
+        $cell.text(pattern.arr[row][col] ? this._randomChinese() : '');
         rows[row].append($cell);
       }
     }

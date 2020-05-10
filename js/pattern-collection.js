@@ -1,27 +1,36 @@
 import { Pattern } from "./pattern.js";
 
 export class PatternCollection {
-  constructor () {
+  constructor (patternService) {
     this._patternURLs = ['/json/spaceships.json',
                          '/json/static.json'];
     this._patternMap = new Map();
     this._allPatterns = {};
     this._initCollection();
+    (async () => {
+      this.spaceships = await this._loadCollection('/json/spaceships.json');
+      this.static = await this._loadCollection('/json/static.json');
+      this.oscillators = await this._loadCollection('/json/oscillators.json');
+      Object.assign(this._allPatterns, this.spaceships,
+                                       this.static,
+                                       this.oscillators);
+      patternService._initPages();
+      console.log(this._allPatterns);
+      console.log(this._patternMap.entries());
+    })();
+  }
+
+  async _loadCollection(url) {
+    let response = await fetch(url);
+    return await response.json();
   }
 
   get(patternName) {
-    return this._patternMap.get(patternName);
+    // return this._patternMap.get(patternName);
+    return this._allPatterns[patternName];
   }
 
   _initCollection() {
-    (async () => {
-      let response = await fetch('/json/spaceships.json');
-      this.spaceships = await response.json();
-      Object.assign(this._allPatterns, this.spaceships);
-      console.log(this.spaceships);
-      console.log(this._allPatterns);
-    })();
-
     let glider = [[0, 0, 1],
                   [1, 0, 1],
                   [0, 1, 1]];
@@ -45,14 +54,6 @@ export class PatternCollection {
                 [0, 1, 1, 1, 1, 1, 1]];
     this._patternMap.set('hwss', new Pattern(hwss));
 
-    
-    // let obj = {};
-    // obj.glider = new Pattern(glider, 'glider');
-    // obj.lwss = new Pattern(lwss, 'light weight spaceship');
-    // obj.mwss = new Pattern(mwss, 'middle weight spaceship');
-    // obj.hwss = new Pattern(hwss, 'heavyweight spaceship');
-    // console.log(JSON.stringify(obj));
-
     let block = [[1, 1],
                  [1, 1]];
     this._patternMap.set('block', new Pattern(block));
@@ -72,5 +73,10 @@ export class PatternCollection {
                   [0, 0, 1, 1],
                   [0, 0, 1, 1]];
     this._patternMap.set('beacon', new Pattern(beacon));
+
+    // let obj = {};
+    // obj.blinker = new Pattern(blinker, 'blinker');
+    // obj.beacon = new Pattern(beacon, 'beacon');
+    // console.log(JSON.stringify(obj));
   }
 }

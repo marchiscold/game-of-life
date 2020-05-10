@@ -51,6 +51,7 @@ export class EventHandler {
         this._board.removeHighlightPattern();
         $(ev.currentTarget).removeClass('selected');
       } else {
+        $('.pattern-selector').removeClass('selected');
         this._board.setHighlightPattern(ev.currentTarget.dataset.name);
         $(ev.currentTarget).addClass('selected');
       }
