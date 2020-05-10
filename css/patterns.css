@@ -64,7 +64,7 @@
   font-size: 11px;
   background-color: #000;
   overflow: hidden;
-  
+
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -83,15 +83,14 @@
   cursor: pointer;
 }
 
-.pattern-selector:hover {
+.pattern-selector.selected {
   border: 2px solid green;
+}
+
+.pattern-selector.selected .button-cell {
+  color: hsl(120, 70%, 47%);
 }
 
 .pattern-selector:hover .button-cell {
   color: hsl(120, 70%, 47%);
-
-}
-
-.pattern-selector.active {
-  
 }

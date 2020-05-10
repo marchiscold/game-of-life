@@ -2,7 +2,10 @@ import { Pattern } from "./pattern.js";
 
 export class PatternCollection {
   constructor () {
+    this._patternURLs = ['/json/spaceships.json',
+                         '/json/static.json'];
     this._patternMap = new Map();
+    this._allPatterns = {};
     this._initCollection();
   }
 
@@ -13,8 +16,10 @@ export class PatternCollection {
   _initCollection() {
     (async () => {
       let response = await fetch('/json/spaceships.json');
-      let result = await response.json();
-      console.log(result.glider.arr);
+      this.spaceships = await response.json();
+      Object.assign(this._allPatterns, this.spaceships);
+      console.log(this.spaceships);
+      console.log(this._allPatterns);
     })();
 
     let glider = [[0, 0, 1],

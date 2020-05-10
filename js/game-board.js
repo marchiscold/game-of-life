@@ -8,7 +8,7 @@ export class GameBoard extends Board {
     this._cols = colCount;
     [this._cellArr, this._cellMap] = this._createDOMCells();
     this._patterns = patternService;
-    this._highlightPattern = 'glider';
+    this._highlightPattern = '';
     this._highlightedCells = [];
 
     super._initDOMBoard(this._gameElement);
@@ -41,6 +41,10 @@ export class GameBoard extends Board {
 
   setHighlightPattern(patternName) {
     this._highlightPattern = patternName;
+  }
+
+  removeHighlightPattern() {
+    this._highlightPattern = '';
   }
 
   onMouseDown(cellElem, shiftKey) {

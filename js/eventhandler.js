@@ -47,11 +47,17 @@ export class EventHandler {
       this._board.setHighlightPattern(ev.target.dataset.name);
     });
     $(document).on('click', '.pattern-selector', ev => {
-      this._board.setHighlightPattern(ev.target.closest('.pattern-selector')
-                                               .dataset.name);
-      // console.log(ev.currentTarget);
+      if ($(ev.currentTarget).hasClass('selected')) {
+        this._board.removeHighlightPattern();
+        $(ev.currentTarget).removeClass('selected');
+      } else {
+        this._board.setHighlightPattern(ev.currentTarget.dataset.name);
+        $(ev.currentTarget).addClass('selected');
+      }
     })
     $(document).on('click', '.pattern-nav__button', ev => {
+      $('.pattern-selector').removeClass('selected');
+      this._board.removeHighlightPattern();
       this._patternService.selectPage(ev.target);
     })
     $(document).on('mousedown', ev => {
@@ -65,6 +71,9 @@ export class EventHandler {
     $(document).on('mousedown', '.cell', ev => {
       if (ev.which != 1) return;
 
+      if (!ev.shiftKey) {
+        $('.pattern-selector').removeClass('selected');
+      }
       if (!this._game.isPaused()) {
         this._game.pauseForDrawing();
       }
