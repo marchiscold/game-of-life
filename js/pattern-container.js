@@ -23,49 +23,25 @@ export class PatternService {
   }
 
   _initPages () {
-    this._selectorPages.set('spaceships', this._createSpaceships());
-    this._selectorPages.set('static', this._createStatic());
-    this._selectorPages.set('oscillators', this._createOscillators());
+    this._selectorPages.set('spaceships', this._createPageButtons('spaceships'));
+    this._selectorPages.set('static', this._createPageButtons('static'));
+    this._selectorPages.set('oscillators', this._createPageButtons('oscillators'));
     this._initActivePage();
   }
 
-  _createSpaceships() {
-    let spaceships = [];
-    spaceships.push(this._createPatternButton('glider', 'glider'));
-    spaceships.push(this._createPatternButton('spaceship', 'lwss'));
-    return spaceships;
+  _createPageButtons(pageName) {
+    let buttonList = [];
+    for (const [patternId, pattern] of Object.entries(this._patterns[pageName])) {
+      buttonList.push(this._createPatternButton(pattern.name, patternId))
+    }
+    return buttonList;
   }
-  
-  _createStatic() {
-    let staticLife = [];
-    staticLife.push(this._createPatternButton('block', 'block'));
-    staticLife.push(this._createPatternButton('beehive', 'beehive'));
-    return staticLife;
-  }
-  
-  _createOscillators () {
-    let oscillators = [];
-    oscillators.push(this._createPatternButton('blinker', 'blinker'));
-    oscillators.push(this._createPatternButton('beacon', 'beacon'));
-    return oscillators;
-  }
-  
-  // _createPatternButton(buttonName, patternName) {
-    
-  //   return $(`<div class="pattern">
-  //               <input class="pattern-button" 
-  //                      type="button" 
-  //                      value="${buttonName}" 
-  //                      data-name="${patternName}">
-  //             </div>`)[0];
-  // }
 
-  _createPatternButton(buttonName, patternName) {
+  _createPatternButton(buttonName, patternId) {
     let cellWidth = 12;
     let wrapper = $('<div>', {'class': 'pattern-selector',
-                              'data-name' : patternName});
-    let pattern = this._patterns.get(patternName);
-    console.log('pattern: ', pattern);
+                              'data-name' : patternId});
+    let pattern = this._patterns.get(patternId);
     let rowCount = pattern.height;
     let colCount = pattern.width;
     let rows = [];
