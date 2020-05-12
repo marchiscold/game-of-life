@@ -1,8 +1,10 @@
 import {PatternCollection} from "./pattern-collection.js";
+import { JsonConstructor } from "./json-constructor.js";
 
 export class PatternService {
   constructor () {
     this._patterns = new PatternCollection(this);
+    this._jsonConstructor = new JsonConstructor(this._patterns);
     this._selectorPages = new Map();
   }
 
@@ -15,6 +17,10 @@ export class PatternService {
     tabElem.classList.add('active');
     $('.pattern-list').empty()
                       .append(this._selectorPages.get(tabElem.dataset.pageName));
+  }
+
+  setJsonConstructorPage(pageName) {
+    this._jsonConstructor.setPage(this._patterns[pageName]);
   }
 
   _initActivePage() {

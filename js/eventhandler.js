@@ -7,6 +7,8 @@ export class EventHandler {
     this._game = game;
     this._patternService = patternService;
     this._initGameControls();
+    this._initSidebarPatterns();
+    this._initJsonConstructor();
     this._initListeners();
   }
 
@@ -26,28 +28,12 @@ export class EventHandler {
     $(document).on('click', '#reset', ev => {
       this._controls.reset();
     });
-  }
-
-  _initListeners() {
-    $(document).on('change', '.game-patterns-select', ev => {
-      this._controls.stop();
-      this._board.clear();
-      this._board.drawPattern(ev.target.value);
-    });
     $(document).on('input', '#range', ev => {
       this._controls.setGameSpeed(parseFloat(ev.target.value));
     });
-    $(document).on('mouseover', '.cell', ev => {
-      this._board.highlight(ev.target);
-      if (ev.which == 1) {
-        this._board.toggleCell(ev.target);
-      }
-    });
-    $(document).on('mouseout', '.cell',ev => {
-      this._board.revertHighlight(ev.target);
-      this._board.removePatternHighlight();
-    });
-    
+  }
+
+  _initSidebarPatterns() {
     $(document).on('click', '.pattern-selector', ev => {
       if ($(ev.currentTarget).hasClass('selected')) {
         this._board.removeHighlightPattern();
@@ -58,19 +44,43 @@ export class EventHandler {
         $(ev.currentTarget).addClass('selected');
       }
     });
-
     $(document).on('click', '.pattern-nav__button', ev => {
       $('.pattern-selector').removeClass('selected');
       this._board.removeHighlightPattern();
       this._patternService.selectPage(ev.target);
     });
+    $(document).on('mousedown', '.button-cell', ev => {
+      ev.preventDefault();
+    });
+  }
+
+  _initJsonConstructor() {
+    $('.json-select').on('change', ev => {
+      this._patternService.setJsonConstructorPage(ev.target.value);
+    })
+  }
+
+  _initListeners() {
+    $(document).on('change', '.game-patterns-select', ev => {
+      this._controls.stop();
+      this._board.clear();
+      this._board.drawPattern(ev.target.value);
+    });
+
+    $(document).on('mouseover', '.cell', ev => {
+      this._board.highlight(ev.target);
+      if (ev.which == 1) {
+        this._board.toggleCell(ev.target);
+      }
+    });
+    $(document).on('mouseout', '.cell',ev => {
+      this._board.revertHighlight(ev.target);
+      this._board.removePatternHighlight();
+    });
     $(document).on('mousedown', ev => {
       if (this._board.contains(ev.target)) {
         ev.preventDefault();
       }
-    });
-    $(document).on('mousedown', '.button-cell', ev => {
-      ev.preventDefault();
     });
     $(document).on('mousedown', '.cell', ev => {
       if (ev.which != 1) return;
