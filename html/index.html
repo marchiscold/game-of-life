@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,12 @@
   <link rel="stylesheet" href="/css/slider.css">
   <link rel="stylesheet" href="/css/patterns.css">
   <link rel="stylesheet" href="/css/main-layout.css">
+  <link rel="stylesheet" href="/css/constructor.css">
   <script type="module" src="/js/main.js" defer></script>
   <script src="https://kit.fontawesome.com/47657c2f81.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
 <body>
   <div class="container">
     <div class="header">
@@ -58,7 +61,29 @@
         <div id="game-board"></div>
       </div>
     </div>
+
+    <div class="constructor">
+      <div id="constructor__inputs">
+        <select class="json-select" name="patterns">
+          <option value="none" selected disabled hidden>select pattern</option>
+          <option value="glider">glider</option>
+          <option value="lwss">lightweight spaceship</option>
+          <option value="mwss">middleweight spaceship</option>
+          <option value="hwss">heavyweight spaceship</option>
+        </select>
+        <span>row</span>
+        <input type="number" name="rows" id="row">
+        <span>col</span>
+        <input type="number" name="columns" id="col">
+        <button id="append">append</button>
+      </div>
+      <div id="constructor__canvas">
+        
+      </div>
+      <div id="constructor__json-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+    </div>
   </div>
 
 </body>
+
 </html>
