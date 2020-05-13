@@ -20,7 +20,7 @@ export class PatternService {
   }
 
   setJsonConstructorPage(pageName) {
-    this._jsonConstructor.setPage(this._patterns[pageName]);
+    this._jsonConstructor.setPage(pageName);
   }
 
   toggleConstructorCell(cellElem) {
