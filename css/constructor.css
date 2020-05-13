@@ -7,6 +7,37 @@
   padding-bottom: 10px;
 }
 
+#constructor__canvas {
+  border: 1px solid rgb(197, 37, 197);
+  min-width: 200px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+}
+
+.constructor__cell {
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.constructor__cell:hover {
+  border: 1px solid palevioletred;
+}
+
+.constructor__cell--alive {
+  background-color: rgb(197, 37, 197);
+}
+
 #constructor__inputs {
   display: flex;
   flex-direction: column;
@@ -15,12 +46,6 @@
 
 #constructor__inputs input {
   width: 50px;
-}
-
-#constructor__canvas {
-  border: 1px solid rgb(197, 37, 197);
-  min-width: 200px;
-  height: 100%;
 }
 
 #constructor__json-text {

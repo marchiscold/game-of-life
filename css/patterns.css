@@ -83,8 +83,12 @@
   cursor: pointer;
 }
 
+.pattern-selector:active {
+  transform: translateY(1px);
+}
+
 .pattern-selector.selected {
-  border: 2px solid green;
+  border: 1.5px solid rgb(2, 161, 2);
 }
 
 .pattern-selector.selected .button-cell {
