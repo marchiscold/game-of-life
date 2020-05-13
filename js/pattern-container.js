@@ -23,6 +23,10 @@ export class PatternService {
     this._jsonConstructor.setPage(this._patterns[pageName]);
   }
 
+  toggleConstructorCell(cellElem) {
+    this._jsonConstructor.toggleCell(cellElem);
+  }
+
   _initActivePage() {
     let tabElem = $('.pattern-nav__button.active')[0];
     this.selectPage(tabElem);

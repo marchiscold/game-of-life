@@ -58,6 +58,9 @@ export class EventHandler {
     $('.json-select').on('change', ev => {
       this._patternService.setJsonConstructorPage(ev.target.value);
     })
+    $('.constructor__cell').click(ev => {
+      this._patternService.toggleConstructorCell(ev.target);
+    })
   }
 
   _initListeners() {
