@@ -1,7 +1,7 @@
 import { GameBoard } from "./game-board.js";
 import { EventHandler } from "./eventhandler.js";
 import { Game } from "./game.js";
-import {PatternService} from "./pattern-container.js";
+import {PatternService} from "./pattern-service.js";
 
 const COLUMN_COUNT = 75;
 const ROW_COUNT = 50;
