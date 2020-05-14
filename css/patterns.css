@@ -62,7 +62,7 @@
   color: hsl(120, 70%, 37%);
   font-weight: bolder;
   font-size: 11px;
-  background-color: #000;
+  background-color: inherit;
   overflow: hidden;
 
   -webkit-touch-callout: none;
@@ -84,7 +84,8 @@
 }
 
 .pattern-selector:active {
-  transform: translateY(1px);
+  /* transform: translateY(1px); */
+  background-color: rgb(17, 16, 16);
 }
 
 .pattern-selector.selected {
