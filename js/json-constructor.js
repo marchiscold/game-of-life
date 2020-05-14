@@ -14,7 +14,8 @@ export class JsonConstructor {
   }
 
   appendPattern() {
-    let patternId = new Pattern(this._cellArr, this._patternName);
+    let arr = JSON.parse(JSON.stringify(this._cellArr));
+    let patternId = new Pattern(arr, this._patternName);
     this._patterns[this._currentPage][this._patternId] = patternId;
     this.setPage(this._currentPage);
   }
@@ -46,7 +47,6 @@ export class JsonConstructor {
   }
 
   toggleCell(cellElem) {
-
     let row = cellElem.dataset.row;
     let col = cellElem.dataset.col;
     this._cellArr[row][col] = this._cellArr[row][col] ? 0 : 1;
