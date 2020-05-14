@@ -55,11 +55,27 @@ export class EventHandler {
   }
 
   _initJsonConstructor() {
+    let jsonConstructor = this._patternService.jsonConstructor;
     $('.json-select').on('change', ev => {
-      this._patternService.setJsonConstructorPage(ev.target.value);
+      jsonConstructor.setPage(ev.target.value);
     })
-    $('.constructor__cell').click(ev => {
-      this._patternService.toggleConstructorCell(ev.target);
+    $(document).on('click', '.constructor__cell', ev => {
+      jsonConstructor.toggleCell(ev.target);
+    });
+    $('#pattern-id').on('input', ev => {
+      jsonConstructor.setPatternId(ev.target.value);
+    })
+    $('#pattern-name').on('input', ev => {
+      jsonConstructor.setPatternName(ev.target.value);
+    })
+    $('#append').click(ev => {
+      jsonConstructor.appendPattern();
+    })
+    $('#row').on('input', ev => {
+      jsonConstructor.changeRowsTo(ev.target.value);
+    })
+    $('#col').on('input', ev => {
+      jsonConstructor.changeColumnsTo(ev.target.value);
     })
   }
 

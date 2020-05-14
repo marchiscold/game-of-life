@@ -4,34 +4,56 @@ export class JsonConstructor {
   constructor (patterns) {
     this._patterns = patterns;
     this._currentPage = 'static';
+    this._patternId = 'placeholder';
+    this._patternName = 'placeholder';
+    this._rows = 4;
+    this._cols = 4;
     this._$constructorContainer = $('#constructor__canvas');
-    this._cellArr = this._initCellArr();
-    this._createConstructor();
-    setTimeout(() => {
-      this.appendPattern();
-    }, 2000)
+    this._cellArr = this._initCellArr(this._rows, this._cols);
+    this._createConstructor(this._rows, this._cols);
   }
 
   appendPattern() {
-    let patternId = new Pattern(this._cellArr, 'my awesome pattern name');
-    this._patterns[this._currentPage][patternId] = patternId;
+    let patternId = new Pattern(this._cellArr, this._patternName);
+    this._patterns[this._currentPage][this._patternId] = patternId;
     this.setPage(this._currentPage);
   }
 
   setPage(pageName) {
     this._currentPage = pageName;
-    let patterns = this._patterns[pageName]
+    let patterns = this._patterns[pageName];
     $('#constructor__json-text').text(JSON.stringify(patterns));
   }
 
+  setPatternId(id) {
+    this._patternId = id;
+  }
+
+  setPatternName(name) {
+    this._patternName = name;
+  }
+
+  changeRowsTo(rowCount) {
+    this._rows = rowCount;
+    this._cellArr = this._initCellArr(this._rows, this._cols);
+    this._createConstructor(this._rows, this._cols);
+  }
+
+  changeColumnsTo(colCount) {
+    this._cols = colCount;
+    this._cellArr = this._initCellArr(this._rows, this._cols);
+    this._createConstructor(this._rows, this._cols);
+  }
+
   toggleCell(cellElem) {
+
     let row = cellElem.dataset.row;
     let col = cellElem.dataset.col;
     this._cellArr[row][col] = this._cellArr[row][col] ? 0 : 1;
     cellElem.classList.toggle('constructor__cell--alive');
   }
 
-  _createConstructor(rowCount = 4, colCount = 4) {
+  _createConstructor(rowCount, colCount) {
     this._$constructorContainer.empty();
     let $wrapper = $('<div>', {'class': 'cell-wrapper'});
     let rows = [];
@@ -48,7 +70,7 @@ export class JsonConstructor {
     this._$constructorContainer.append($wrapper);
   }
 
-  _initCellArr(rowCount = 4, colCount = 4) {
+  _initCellArr(rowCount, colCount) {
     let arr = [];
     for (let row = 0; row < rowCount; row++) {
       arr.push([]);
