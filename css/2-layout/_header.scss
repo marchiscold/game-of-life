@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  max-height: 170px;
+  min-height: 80px;
+  color: green;
+  font-size: 40px;
+  &__text {
+    font-family: serif;
+    text-align: center;
+    width: 600px;
+  }
+}
+

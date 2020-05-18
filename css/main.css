@@ -1,82 +1,14 @@
-.constructor {
-  color: #c525c5;
-  width: 80%;
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding-bottom: 10px;
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 
-#constructor__canvas {
-  border: 1px solid #c525c5;
-  min-width: 200px;
+html, body {
+  background-color: #000;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.cell-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  border-top: 1px solid #333;
-  border-left: 1px solid #333;
-}
-
-.constructor__cell {
-  width: 12px;
-  height: 12px;
-  border-right: 1px solid #333;
-  border-bottom: 1px solid #333;
-}
-
-.constructor__cell:hover {
-  border: 1px solid palevioletred;
-}
-
-.constructor__cell--alive {
-  background-color: #c525c5;
-}
-
-#constructor__inputs {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 100px;
-}
-
-#constructor__inputs input {
-  width: 50px;
-}
-
-#constructor__json-text {
-  border: 1px solid #c525c5;
-  padding: 10px;
-  width: 60%;
-}
-
-#append {
-  margin-top: 8px;
-  text-transform: uppercase;
+  font-family: sans-serif;
 }
 
 .controls__patterns {
@@ -178,17 +110,161 @@
   /* background-color: white; */
 }
 
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
+#game-board {
+  margin: 0 auto;
+  background-color: #000;
+  border-left: 1px solid #333;
+  border-top: 1px solid #333;
+  overflow: hidden;
 }
 
-html, body {
-  background-color: #000;
+.game-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 5px;
+  height: 23px;
+}
+
+.pattern-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 20vw;
+  min-width: 300px;
+  margin-right: 5px;
+  color: #1b981b;
+}
+
+.pattern-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  border: 1.5px solid green;
   height: 100%;
-  font-family: sans-serif;
+  padding-top: 20px;
+}
+
+.pattern-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 28px;
+}
+
+.pattern-nav__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
+  text-align: center;
+  min-width: 93px;
+  cursor: pointer;
+  -webkit-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
+
+.pattern-nav__button.active {
+  background-color: green;
+  color: #000;
+}
+
+.pattern-nav__button:hover {
+  background-color: green;
+  color: #000;
+}
+
+.pattern-nav__padding {
+  width: 3px;
+}
+
+.game-patterns {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.button-cell {
+  color: #1ca01c;
+  font-weight: bolder;
+  font-size: 11px;
+  background-color: inherit;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.pattern-selector {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid green;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.pattern-selector:active {
+  background-color: #111010;
+}
+
+.pattern-selector.selected {
+  border: 1.5px solid #02a102;
+}
+
+.pattern-selector.selected .button-cell {
+  color: #24cc24;
+}
+
+.pattern-selector:hover .button-cell {
+  color: #24cc24;
 }
 
 .header {
@@ -240,140 +316,35 @@ html, body {
   position: relative;
 }
 
-.pattern-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 20vw;
-  min-width: 300px;
-  margin-right: 5px;
-  color: #1b981b;
-}
-
-#game-board {
-  margin: 0 auto;
-  background-color: #000;
-  border-left: 1px solid #333;
-  border-top: 1px solid #333;
-  overflow: hidden;
-}
-
-.game-nav {
+.constructor {
+  color: #c525c5;
+  width: 80%;
+  margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 5px;
-  height: 23px;
+  padding-bottom: 10px;
 }
 
-.pattern-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  border: 1.5px solid green;
+#constructor__canvas {
+  border: 1px solid #c525c5;
+  min-width: 200px;
   height: 100%;
-  padding-top: 20px;
-}
-
-.pattern {
-  margin: 20px;
-}
-
-.pattern-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  height: 28px;
-}
-
-.pattern-nav__button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: 18px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0px;
-          flex: 1 1 0;
-  text-align: center;
-  min-width: 93px;
-  cursor: pointer;
-  -webkit-transition: all 0.15s linear;
-  transition: all 0.15s linear;
 }
 
-.pattern-nav__button input {
-  background-color: #000;
-  border: none;
-  color: green;
-}
-
-.pattern-nav__button:hover {
-  background-color: green;
-  color: #000;
-}
-
-.pattern-nav__button.active {
-  background-color: green;
-  color: #000;
-}
-
-.pattern-nav__padding {
-  width: 3px;
-}
-
-.game-patterns {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0px;
-          flex: 1 1 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.button-cell {
-  color: #1ca01c;
-  font-weight: bolder;
-  font-size: 11px;
-  background-color: inherit;
-  overflow: hidden;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.pattern-selector {
+.cell-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -381,32 +352,49 @@ html, body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border: 1px solid green;
-  margin: 10px;
-  cursor: pointer;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
 }
 
-.pattern-selector:active {
-  /* transform: translateY(1px); */
-  background-color: #111010;
+.constructor__cell {
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
 
-.pattern-selector.selected {
-  border: 1.5px solid #02a102;
+.constructor__cell:hover {
+  border: 1px solid palevioletred;
 }
 
-.pattern-selector.selected .button-cell {
-  color: #24cc24;
+.constructor__cell--alive {
+  background-color: #c525c5;
 }
 
-.pattern-selector:hover .button-cell {
-  color: #24cc24;
+#constructor__inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100px;
+}
+
+#constructor__inputs input {
+  width: 50px;
+}
+
+#constructor__json-text {
+  border: 1px solid #c525c5;
+  padding: 10px;
+  width: 60%;
+}
+
+#append {
+  margin-top: 8px;
+  text-transform: uppercase;
 }
 
 /* http://danielstern.ca/range.css/?ref=css-tricks#/ */
@@ -510,8 +498,4 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #30fa2e;
 }
-
-.test-class {
-  background-color: #fff;
-}
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=main.css.map */

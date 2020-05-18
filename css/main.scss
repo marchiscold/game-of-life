@@ -1,0 +1,13 @@
+
+@import '0-base/base';
+@import 'variables';
+@import 'controls';
+@import 'gameboard';
+@import 'main-layout';
+@import 'patterns';
+
+@import '1-layout/header';
+@import '1-layout/main-content';
+
+@import '2-components/constructor';
+@import '2-components/slider';
