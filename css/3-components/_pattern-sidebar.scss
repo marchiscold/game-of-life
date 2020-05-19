@@ -4,7 +4,7 @@
   width: 20vw;
   min-width: 300px;
   margin-right: 5px;
-  color: hsl(120, 70%, 35%);
+  color: darken($color-primary, 10%);
 }
 
 .pattern-list {
@@ -13,7 +13,7 @@
   justify-content: space-around;
   align-items: center;
   align-content: flex-start;
-  border: 1.5px solid green;
+  border: 1.5px solid $color-primary-darker;
   height: 100%;
   padding-top: 20px;
 }
@@ -33,11 +33,11 @@
     cursor: pointer;
     transition: all 0.15s linear;
     &.active {
-      background-color: green;
+      background-color: $color-primary-darker;
       color: #000;
     }
     &:hover {
-      background-color: green;
+      background-color: $color-primary-darker;
       color: #000;
     }
   }
@@ -53,7 +53,7 @@
 }
 
 .button-cell {
-  color: hsl(120, 70%, 37%);
+  color: $color-primary-darker;
   font-weight: bolder;
   font-size: 11px;
   background-color: inherit;
@@ -66,7 +66,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid green;
+  border: 1px solid $color-primary-darker;
   margin: 10px;
   cursor: pointer;
   &:active {
@@ -75,12 +75,12 @@
   &.selected {
     border: 1.5px solid rgb(2, 161, 2);
     .button-cell {
-      color: hsl(120, 70%, 47%);
+      color: $color-primary;
     }
   }
   &:hover {
     .button-cell {
-    color: hsl(120, 70%, 47%);
+    color: $color-primary;
     }
   }
 }

@@ -15,7 +15,7 @@
 .cell {
   width: 12px;
   height: 12px;
-  color: hsl(120, 70%, 47%);
+  color: $color-primary;
   font-weight: bolder;
   font-size: 11px;
   background-color: #000;
@@ -27,7 +27,7 @@
 }
 
 .cell.highlight {
-  border: .1px solid palegreen;
+  border: .1px solid hsl(120, 93%, 79%);
 }
 
 .cell.pattern-hover {

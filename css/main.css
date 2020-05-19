@@ -266,26 +266,29 @@ input[type=range]:focus::-ms-fill-upper {
 .game-button {
   width: 50px;
   font-size: 18px;
-  color: #1b981b;
+  color: #1ca01c;
   background-color: #000;
-  border: 1px solid #178217;
+  border: 1px solid #1ca01c;
   cursor: pointer;
   margin: 0 3px;
 }
 
 .game-button:hover {
-  color: #22c322;
+  color: #24cc24;
 }
 
 .game-button:focus {
-  outline-color: #178217;
+  outline-color: #188b18;
 }
 
 .range-label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #1b981b;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #1ca01c;
   font-size: 15px;
   margin-left: 4px;
   width: 70px;
@@ -333,7 +336,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .cell.highlight {
-  border: .1px solid palegreen;
+  border: 0.1px solid palegreen;
 }
 
 .cell.pattern-hover {
@@ -355,7 +358,7 @@ input[type=range]:focus::-ms-fill-upper {
   width: 20vw;
   min-width: 300px;
   margin-right: 5px;
-  color: #1b981b;
+  color: #1ca01c;
 }
 
 .pattern-list {
@@ -371,7 +374,7 @@ input[type=range]:focus::-ms-fill-upper {
           align-items: center;
   -ms-flex-line-pack: start;
       align-content: flex-start;
-  border: 1.5px solid green;
+  border: 1.5px solid #067906;
   height: 100%;
   padding-top: 20px;
 }
@@ -407,12 +410,12 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .pattern-nav__button.active {
-  background-color: green;
+  background-color: #067906;
   color: #000;
 }
 
 .pattern-nav__button:hover {
-  background-color: green;
+  background-color: #067906;
   color: #000;
 }
 
@@ -433,7 +436,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .button-cell {
-  color: #1ca01c;
+  color: #067906;
   font-weight: bolder;
   font-size: 11px;
   background-color: inherit;
@@ -458,7 +461,7 @@ input[type=range]:focus::-ms-fill-upper {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid green;
+  border: 1px solid #067906;
   margin: 10px;
   cursor: pointer;
 }
