@@ -11,51 +11,6 @@ html, body {
   font-family: sans-serif;
 }
 
-.controls__patterns {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  margin-right: auto;
-}
-
-.game-button {
-  width: 50px;
-  font-size: 18px;
-  color: #1b981b;
-  background-color: #000;
-  border: 1px solid #178217;
-  cursor: pointer;
-  margin: 0 3px;
-}
-
-.game-button:hover {
-  color: #22c322;
-}
-
-.game-button:focus {
-  outline-color: #178217;
-}
-
-.game-controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.range-label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  color: #1b981b;
-  font-size: 15px;
-  margin-left: 4px;
-  width: 70px;
-}
-
-#range-value {
-  margin-right: 4px;
-}
-
 .row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -497,5 +452,43 @@ input[type=range]:focus::-ms-fill-lower {
 
 input[type=range]:focus::-ms-fill-upper {
   background: #30fa2e;
+}
+
+.game-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.game-button {
+  width: 50px;
+  font-size: 18px;
+  color: #1b981b;
+  background-color: #000;
+  border: 1px solid #178217;
+  cursor: pointer;
+  margin: 0 3px;
+}
+
+.game-button:hover {
+  color: #22c322;
+}
+
+.game-button:focus {
+  outline-color: #178217;
+}
+
+.range-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #1b981b;
+  font-size: 15px;
+  margin-left: 4px;
+  width: 70px;
+}
+
+#range-value {
+  margin-right: 4px;
 }
 /*# sourceMappingURL=main.css.map */
