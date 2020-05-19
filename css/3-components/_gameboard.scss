@@ -1,3 +1,11 @@
+#game-board {
+  margin: 0 auto;
+  background-color: #000;
+  border-left: 1px solid #333;
+  border-top: 1px solid #333;
+  overflow: hidden;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -11,17 +19,10 @@
   font-weight: bolder;
   font-size: 11px;
   background-color: #000;
-  /* transition: opacity 490ms ease-in-out; */
   border-right: .1px solid #333;
   border-bottom: .1px solid #333;
   overflow: hidden;
   cursor: default;
-
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -35,16 +36,6 @@
 
 .cell.pattern-hover-alive {
   opacity: 0.80;
-}
-.cell.dead {
-  /* opacity: 0; */
-  /* background-color: #000; */
-  /* background-color: white; */
-}
-
-.cell.alive {
-  /* opacity: 1; */
-  /* background-color: white; */
 }
 
 

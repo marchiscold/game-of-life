@@ -1,13 +1,12 @@
-
 @import '1-base/base';
-@import 'variables';
-@import 'gameboard';
-@import 'main-layout';
-@import 'patterns';
+@import '1-base/variables';
 
 @import '2-layout/header';
 @import '2-layout/main-content';
+@import '2-layout/top-nav';
 
 @import '3-components/constructor';
 @import '3-components/slider';
 @import '3-components/controls';
+@import '3-components/gameboard';
+@import '3-components/pattern-sidebar';

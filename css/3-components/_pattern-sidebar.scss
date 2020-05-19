@@ -1,0 +1,89 @@
+.pattern-container {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  min-width: 300px;
+  margin-right: 5px;
+  color: hsl(120, 70%, 35%);
+}
+
+.pattern-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: flex-start;
+  border: 1.5px solid green;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.pattern-nav {
+  display: flex;
+  justify-content: space-around;
+  height: 28px;
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex: 1 1 0;
+    text-align: center;
+    min-width: 93px;
+    cursor: pointer;
+    transition: all 0.15s linear;
+    &.active {
+      background-color: green;
+      color: #000;
+    }
+    &:hover {
+      background-color: green;
+      color: #000;
+    }
+  }
+  &__padding {
+    width: 3px;
+  }
+}
+
+.game-patterns {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+}
+
+.button-cell {
+  color: hsl(120, 70%, 37%);
+  font-weight: bolder;
+  font-size: 11px;
+  background-color: inherit;
+  overflow: hidden;
+  user-select: none;
+}
+
+.pattern-selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid green;
+  margin: 10px;
+  cursor: pointer;
+  &:active {
+    background-color: rgb(17, 16, 16);
+  }
+  &.selected {
+    border: 1.5px solid rgb(2, 161, 2);
+    .button-cell {
+      color: hsl(120, 70%, 47%);
+    }
+  }
+  &:hover {
+    .button-cell {
+    color: hsl(120, 70%, 47%);
+    }
+  }
+}
+
+
+
