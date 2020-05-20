@@ -374,7 +374,7 @@ input[type=range]:focus::-ms-fill-upper {
           align-items: center;
   -ms-flex-line-pack: start;
       align-content: flex-start;
-  border: 1.5px solid #067906;
+  border: 1.5px solid #089108;
   height: 100%;
   padding-top: 20px;
 }
@@ -410,12 +410,12 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .pattern-nav__button.active {
-  background-color: #067906;
+  background-color: #089108;
   color: #000;
 }
 
 .pattern-nav__button:hover {
-  background-color: #067906;
+  background-color: #089108;
   color: #000;
 }
 
@@ -436,7 +436,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .button-cell {
-  color: #067906;
+  color: #089108;
   font-weight: bolder;
   font-size: 11px;
   background-color: inherit;
@@ -461,7 +461,7 @@ input[type=range]:focus::-ms-fill-upper {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #067906;
+  border: 1px solid #089108;
   margin: 10px;
   cursor: pointer;
 }

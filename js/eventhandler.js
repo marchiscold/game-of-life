@@ -83,7 +83,7 @@ export class EventHandler {
     $(document).on('change', '.game-patterns-select', ev => {
       this._controls.stop();
       this._board.clear();
-      this._board.drawPattern(ev.target.value);
+      this._board.drawCenteredPattern(ev.target.value);
     });
 
     $(document).on('mouseover', '.cell', ev => {

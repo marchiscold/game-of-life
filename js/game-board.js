@@ -145,4 +145,10 @@ export class GameBoard extends Board {
     }
   }
 
+  drawCenteredPattern(patternName) {
+    let pattern = this._patterns.getPattern(patternName);
+    let offsetTop = Math.floor((this._rows - pattern.height)/2);
+    let offsetLeft = Math.floor((this._cols - pattern.width)/2);
+    this.drawPattern(patternName, offsetTop, offsetLeft);
+  }
 }
