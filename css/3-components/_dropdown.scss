@@ -1,0 +1,33 @@
+.dropdown {
+  color: darken($color-primary, 10%);
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.dropdown__btn {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid darken($color-primary, 10%);
+  width: 160px;
+  padding-left: 10px;
+  cursor: pointer;
+  i {
+    margin-right: 10px;
+  }
+}
+
+.dropdown__list {
+  position: absolute;
+  background: #000;
+  width: 160px;
+  border: 1px solid darken($color-primary, 20%);
+  border-top: none;
+}
+
+.dropdown__item {
+  padding: 10px 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: #333;
+  }
+}

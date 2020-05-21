@@ -481,4 +481,44 @@ input[type=range]:focus::-ms-fill-upper {
 .pattern-selector:hover .button-cell {
   color: #24cc24;
 }
+
+.dropdown {
+  color: #1ca01c;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.dropdown__btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px solid #1ca01c;
+  width: 160px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.dropdown__btn i {
+  margin-right: 10px;
+}
+
+.dropdown__list {
+  position: absolute;
+  background: #000;
+  width: 160px;
+  border: 1px solid #157515;
+  border-top: none;
+}
+
+.dropdown__item {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdown__item:hover {
+  background-color: #333;
+}
 /*# sourceMappingURL=main.css.map */
