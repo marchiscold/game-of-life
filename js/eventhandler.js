@@ -9,6 +9,7 @@ export class EventHandler {
     this._initGameControls();
     this._initSidebarPatterns();
     this._initJsonConstructor();
+    this._initDropdown();
     this._initListeners();
   }
 
@@ -77,6 +78,18 @@ export class EventHandler {
     $('#col').on('input', ev => {
       jsonConstructor.changeColumnsTo(ev.target.value);
     })
+  }
+
+  _initDropdown() {
+    $('.dropdown__btn').click(ev => {
+      $('.dropdown__list').toggleClass('active');
+    });
+    $(document).click(ev => {
+      if (!ev.target.closest('.dropdown__btn')) {
+        $('.dropdown__btn').removeClass('active');
+        $('.dropdown__list').removeClass('active');
+      }
+    });
   }
 
   _initListeners() {
