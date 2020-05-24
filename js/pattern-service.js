@@ -38,7 +38,8 @@ export class PatternService {
     for (const patternId of Object.keys(dropdowns)) {
       elements.push(this._createDropdownElement(patternId, dropdowns[patternId]));
     }
-    $dropdownList.append(elements);
+    let $preview = $('<div>', {'class': 'dropdown__preview'});
+    $dropdownList.append(elements, $preview);
   }
 
   _createDropdownElement(patternId, pattern) {

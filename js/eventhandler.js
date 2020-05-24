@@ -101,7 +101,9 @@ export class EventHandler {
     });
     $(document).on('click', '.dropdown__item', ev => {
       let patternName = ev.target.closest('.dropdown__item').dataset.name;
-      $('.dropdown__btn span').text(ev.target.textContent);
+      $('.dropdown__btn span').text($(ev.target)
+                              .closest('.dropdown__item')
+                              .find('span').text());
       this._controls.stop();
       this._board.clear();
       this._board.drawCenteredPattern(patternName);
