@@ -10,12 +10,13 @@ export class PatternCollection {
       this.spaceships = await this._loadCollection('/json/spaceships.json');
       this.static = await this._loadCollection('/json/static.json');
       this.oscillators = await this._loadCollection('/json/oscillators.json');
-      this.dropdown = await this._loadCollection('/json/dropdown.json');
+      this.dropdowns = await this._loadCollection('/json/dropdown.json');
       Object.assign(this._allPatterns, this.spaceships,
                                        this.static,
                                        this.oscillators,
-                                       this.dropdown);
-      patternService._initPages();
+                                       this.dropdowns);
+      patternService.initPages();
+      patternService.initDropdown();
     })();
   }
 

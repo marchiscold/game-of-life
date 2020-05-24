@@ -24,11 +24,30 @@ export class PatternService {
     this.selectPage(tabElem);
   }
 
-  _initPages () {
+  initPages () {
     this._selectorPages.set('spaceships', this._createPageButtons('spaceships'));
     this._selectorPages.set('static', this._createPageButtons('static'));
     this._selectorPages.set('oscillators', this._createPageButtons('oscillators'));
     this._initActivePage();
+  }
+
+  initDropdown() {
+    let $dropdownList = $('.dropdown__list');
+    let dropdowns = this._patterns.dropdowns;
+    let elements = [];
+    for (const patternId of Object.keys(dropdowns)) {
+      elements.push(this._createDropdownElement(patternId, dropdowns[patternId]));
+    }
+    $dropdownList.append(elements);
+  }
+
+  _createDropdownElement(patternId, pattern) {
+    let $dropdownItem = $('<div>', {'class': 'dropdown__item',
+                                    'data-name': patternId});
+    let $icon = $('<i class="fa fa-angle-double-right" aria-hidden="true"></i>');
+    let $text = $('<span>' + pattern.name + '</span>');
+    $dropdownItem.append($text, $icon);
+    return  $dropdownItem;                                   
   }
 
   _createPageButtons(pageName) {
