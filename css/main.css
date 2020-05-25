@@ -515,10 +515,10 @@ input[type=range]:focus::-ms-fill-upper {
 .dropdown__list {
   display: none;
   position: absolute;
+  top: 27px;
   background: #000;
   width: 160px;
   border: 1px solid #157515;
-  border-top: none;
 }
 
 .dropdown__list.active {
@@ -565,8 +565,8 @@ input[type=range]:focus::-ms-fill-upper {
 
 .dropdown__preview {
   position: absolute;
-  left: 100%;
-  top: 0;
+  left: 105%;
+  top: -1px;
   bottom: -1px;
   width: 200px;
   background-color: palegreen;
