@@ -108,6 +108,10 @@ export class EventHandler {
       this._board.clear();
       this._board.drawCenteredPattern(patternName);
     });
+    $(document).on('mouseenter', '.dropdown__item', ev => {
+      let patternName = ev.target.closest('.dropdown__item').dataset.name;
+      this._patternService.generatePreviewOf(patternName);
+    });
   }
 
   _initListeners() {

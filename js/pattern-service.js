@@ -32,21 +32,39 @@ export class PatternService {
   }
 
   initDropdown() {
-    let $dropdownList = $('.dropdown__list');
     let dropdowns = this._patterns.dropdowns;
     let elements = [];
     for (const patternId of Object.keys(dropdowns)) {
       elements.push(this._createDropdownElement(patternId, dropdowns[patternId]));
     }
-    let $preview = $('<div>', {'class': 'dropdown__preview'});
-    $dropdownList.append(elements, $preview);
+    $('.dropdown__list').prepend(elements);
+  }
+
+  generatePreviewOf (patternName) {
+    $('.dropdown__preview').empty();
+    let cellWidth = 12;
+    let pattern = this._patterns.get(patternName);
+    let rowCount = pattern.height;
+    let colCount = pattern.width;
+    let rows = [];
+    for (let row = 0; row < rowCount; row++) {
+      rows.push($('<div>', {'class': 'row'}));
+      for (let col = 0; col < colCount; col++) {
+        let $cell = $('<div>', {'class': 'button-cell'});
+        $cell.css({width: cellWidth,
+                   height: cellWidth});
+        $cell.text(pattern.arr[row][col] ? this._randomChinese() : '');
+        rows[row].append($cell);
+      }
+    }
+    $('.dropdown__preview').append(rows);
   }
 
   _createDropdownElement(patternId, pattern) {
     let $dropdownItem = $('<div>', {'class': 'dropdown__item',
                                     'data-name': patternId});
-    let $icon = $('<i class="fa fa-angle-double-right" aria-hidden="true"></i>');
     let $text = $('<span>' + pattern.name + '</span>');
+    let $icon = $('<i class="fa fa-angle-double-right" aria-hidden="true"></i>');
     $dropdownItem.append($text, $icon);
     return  $dropdownItem;                                   
   }
