@@ -81,29 +81,11 @@ export class EventHandler {
   }
 
   _initDropdown() {
-    let $icon = $('.dropdown__btn i');
-    $('.dropdown__btn').click(ev => {
-      $('.dropdown__list').toggleClass('active');
-      if ($('.dropdown__btn i').hasClass('fa-caret-down')) {
-        $icon.removeClass('fa-caret-down');
-        $icon.addClass('fa-caret-up');
-      } else {
-        $icon.removeClass('fa-caret-up');
-        $icon.addClass('fa-caret-down');
-      }
-    });
-    $(document).click(ev => {
-      if (!ev.target.closest('.dropdown__btn')) {
-        $icon.removeClass('fa-caret-up');
-        $icon.addClass('fa-caret-down');
-        $('.dropdown__list').removeClass('active');
-      }
-    });
     $(document).on('click', '.dropdown__item', ev => {
       let patternName = ev.target.closest('.dropdown__item').dataset.name;
-      $('.dropdown__btn span').text($(ev.target)
-                              .closest('.dropdown__item')
-                              .find('span').text());
+      $('.dropdown__btn span').text($(ev.target).closest('.dropdown__item')
+                                                .find('span')
+                                                .text());
       $('.dropdown__list').hide();
       this._controls.stop();
       this._board.clear();
