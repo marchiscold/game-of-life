@@ -45,6 +45,7 @@ export class GameBoard extends Board {
 
   removeHighlightPattern() {
     this._highlightPattern = '';
+    this.removePatternHighlight();
   }
 
   onMouseDown(cellElem, shiftKey) {
@@ -79,27 +80,32 @@ export class GameBoard extends Board {
 
   highlight(cellElem) {
     if (this._highlightPattern != '') {
-      this.highlightWithPattern(this._highlightPattern, cellElem);
+      this._highlightWithPattern(this._highlightPattern, cellElem);
     } else {
       this.highlightCell(cellElem);
     }
   }
 
-  highlightWithPattern(patternName, cellElem) {
+  _highlightWithPattern(patternName, cellElem) {
     let cell = this._cellMap.get(cellElem);
+    let pattern = this._patterns.getPattern(patternName);
     let offsetTop = cell.getRow();
     let offsetLeft = cell.getCol();
-    let pattern = this._patterns.getPattern(patternName);
 
     for (let row = 0; row < pattern.height; row++) {
       for (let col = 0; col < pattern.width; col++) {
-        let gameRow = row + offsetTop;
+        let gameRow = row + offsetTop - Math.floor(pattern.height/2);
         if (gameRow >= this._rows) {
           gameRow = gameRow - this._rows;
+        } else if (gameRow < 0) {
+          gameRow = gameRow + this._rows;
         }
-        let gameCol = col + offsetLeft;
+
+        let gameCol = col + offsetLeft - Math.floor(pattern.width/2);
         if (gameCol >= this._cols) {
           gameCol = gameCol - this._cols;
+        } else if (gameCol < 0) {
+          gameCol = gameCol + this._cols;
         }
         let cell = this._cellArr[gameRow][gameCol];
         if (pattern.arr[row][col]) {
@@ -127,15 +133,21 @@ export class GameBoard extends Board {
     let pattern = this._patterns.getPattern(patternName);
     let offsetTop = top != undefined ? top : parseInt(this._rows/2);
     let offsetLeft = left != undefined ? left : parseInt(this._cols/2);
+
     for (let row = 0; row < pattern.height; row++) {
       for (let col = 0; col < pattern.width; col++) {
-        let gameRow = row + offsetTop;
+        let gameRow = row + offsetTop - Math.floor(pattern.height/2);
         if (gameRow >= this._rows) {
           gameRow = gameRow - this._rows;
+        } else if (gameRow < 0) {
+          gameRow = gameRow + this._rows;
         }
-        let gameCol = col + offsetLeft;
+
+        let gameCol = col + offsetLeft - Math.floor(pattern.width/2);
         if (gameCol >= this._cols) {
           gameCol = gameCol - this._cols;
+        } else if (gameCol < 0) {
+          gameCol = gameCol + this._cols;
         }
         let cell = this._cellArr[gameRow][gameCol];
         if (pattern.arr[row][col]) {
@@ -147,8 +159,8 @@ export class GameBoard extends Board {
 
   drawCenteredPattern(patternName) {
     let pattern = this._patterns.getPattern(patternName);
-    let offsetTop = Math.floor((this._rows - pattern.height)/2);
-    let offsetLeft = Math.floor((this._cols - pattern.width)/2);
+    let offsetTop = Math.floor(this._rows/2);
+    let offsetLeft = Math.floor(this._cols/2);
     this.drawPattern(patternName, offsetTop, offsetLeft);
   }
 }

@@ -73,7 +73,7 @@
     background-color: rgb(17, 16, 16);
   }
   &.selected {
-    border: 1.5px solid rgb(2, 161, 2);
+    border: 1.5px solid $color-primary-darker;
     .button-cell {
       color: $color-primary;
     }

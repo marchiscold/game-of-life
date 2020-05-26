@@ -136,5 +136,22 @@ export class EventHandler {
     $(document).on('mouseup', ev => {
       this._game.resumeIfPausedForDrawing();
     });
+    $(document).on('contextmenu', ev => {
+      if (ev.target.closest('#game-board')) {
+        ev.preventDefault();
+      }
+    });
+    $(document).on('keydown', ev => {
+      if (ev.code == 'Escape') {
+        this._board.removeHighlightPattern();
+        $('.pattern-selector').removeClass('selected');
+      }
+    });
+    $(document).on('mousedown', ev => {
+      if (ev.which == 3) {
+        this._board.removeHighlightPattern();
+        $('.pattern-selector').removeClass('selected');
+      }
+    });
   }
 }

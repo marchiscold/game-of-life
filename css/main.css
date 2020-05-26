@@ -473,7 +473,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .pattern-selector.selected {
-  border: 1.5px solid #02a102;
+  border: 1.5px solid #1d9f49;
 }
 
 .pattern-selector.selected .button-cell {
