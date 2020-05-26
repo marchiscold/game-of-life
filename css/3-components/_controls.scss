@@ -5,13 +5,14 @@
 .game-button {
   width: 50px;
   font-size: 18px;
-  color: darken($color-primary, 10%);
-  background-color: #000;
+  color: #000;
+  background-color: darken($color-primary, 10%);
   border: 1px solid darken($color-primary, 10%);
   cursor: pointer;
   margin: 0 3px;
   &:hover {
     color: $color-primary;
+    background-color: #000;
   }
   
   &:focus {

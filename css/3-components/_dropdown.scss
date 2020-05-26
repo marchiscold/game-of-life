@@ -1,18 +1,25 @@
-$dropdown-width: 160px;
+$dropdown-width: 150px;
 
 .dropdown {
+  position: relative;
   color: darken($color-primary, 10%);
   font-size: 18px;
   user-select: none;
+  &:hover .dropdown__list {
+    display: block;
+  }
 }
 
 .dropdown__btn {
+  color: #000;
+  background-color: darken($color-primary, 10%);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid darken($color-primary, 10%);
-  width: 160px;
+  // border: 1px solid darken($color-primary, 10%);
+  width: $dropdown-width;
   padding-left: 10px;
+  padding-top: 2px;
   cursor: pointer;
   i {
     margin-right: 10px;
@@ -22,10 +29,10 @@ $dropdown-width: 160px;
 .dropdown__list {
   display: none;
   position: absolute;
-  top: 27px;
+  top: 100%;
   background: #000;
   width: $dropdown-width;
-  border: 2px solid darken($color-primary, 10%);
+  // border: 2px solid darken($color-primary, 10%);
   border-top: none;
   border-bottom: none;
   &.active {
@@ -48,15 +55,15 @@ $dropdown-width: 160px;
   position: relative;
   padding: 10px 15px;
   cursor: pointer;
-  border-bottom: 1px solid hsl(0, 0%, 20%);
+  // border-bottom: 1px solid hsl(0, 0%, 20%);
   display: flex;
   align-items: center;
   justify-content: space-between;
   &:first-child {
-    border-top: 1px solid darken($color-primary, 20%);
+    // border-top: 1px solid darken($color-primary, 20%);
   }              
   &:nth-last-child(2) {
-    border-bottom: 1px solid darken($color-primary, 20%);
+    // border-bottom: 1px solid darken($color-primary, 20%);
   }
   &:hover {
     background-color: darken($color-primary, 10%);

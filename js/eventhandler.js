@@ -104,6 +104,7 @@ export class EventHandler {
       $('.dropdown__btn span').text($(ev.target)
                               .closest('.dropdown__item')
                               .find('span').text());
+      $('.dropdown__list').hide();
       this._controls.stop();
       this._board.clear();
       this._board.drawCenteredPattern(patternName);
@@ -112,6 +113,9 @@ export class EventHandler {
       let patternName = ev.target.closest('.dropdown__item').dataset.name;
       this._patternService.generatePreviewOf(patternName);
     });
+    $('.dropdown').on('mouseenter', ev => {
+      $('.dropdown__list').show();
+    })
   }
 
   _initListeners() {

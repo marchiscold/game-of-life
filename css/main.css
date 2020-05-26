@@ -267,8 +267,8 @@ input[type=range]:focus::-ms-fill-upper {
 .game-button {
   width: 50px;
   font-size: 18px;
-  color: #1ca01c;
-  background-color: #000;
+  color: #000;
+  background-color: #1ca01c;
   border: 1px solid #1ca01c;
   cursor: pointer;
   margin: 0 3px;
@@ -276,6 +276,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .game-button:hover {
   color: #24cc24;
+  background-color: #000;
 }
 
 .game-button:focus {
@@ -484,6 +485,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .dropdown {
+  position: relative;
   color: #1ca01c;
   font-size: 18px;
   -webkit-user-select: none;
@@ -492,7 +494,13 @@ input[type=range]:focus::-ms-fill-upper {
           user-select: none;
 }
 
+.dropdown:hover .dropdown__list {
+  display: block;
+}
+
 .dropdown__btn {
+  color: #000;
+  background-color: #1ca01c;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -502,9 +510,9 @@ input[type=range]:focus::-ms-fill-upper {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #1ca01c;
-  width: 160px;
+  width: 150px;
   padding-left: 10px;
+  padding-top: 2px;
   cursor: pointer;
 }
 
@@ -515,10 +523,9 @@ input[type=range]:focus::-ms-fill-upper {
 .dropdown__list {
   display: none;
   position: absolute;
-  top: 27px;
+  top: 100%;
   background: #000;
-  width: 160px;
-  border: 2px solid #1ca01c;
+  width: 150px;
   border-top: none;
   border-bottom: none;
 }
@@ -542,7 +549,6 @@ input[type=range]:focus::-ms-fill-upper {
   position: relative;
   padding: 10px 15px;
   cursor: pointer;
-  border-bottom: 1px solid #333333;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -552,14 +558,6 @@ input[type=range]:focus::-ms-fill-upper {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-}
-
-.dropdown__item:first-child {
-  border-top: 1px solid #157515;
-}
-
-.dropdown__item:nth-last-child(2) {
-  border-bottom: 1px solid #157515;
 }
 
 .dropdown__item:hover {
