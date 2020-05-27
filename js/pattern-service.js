@@ -6,6 +6,7 @@ export class PatternService {
     this._patterns = new PatternCollection(this);
     this.jsonConstructor = new JsonConstructor(this._patterns);
     this._selectorPages = new Map();
+    this._previewCache = new Map();
   }
 
   getPattern(patternName) {
@@ -42,6 +43,10 @@ export class PatternService {
 
   generatePreviewOf (patternName) {
     $('.dropdown__preview').empty();
+    if (this._previewCache.has(patternName)) {
+      $('.dropdown__preview').append(this._previewCache.get(patternName));
+      return;
+    }
     let cellWidth = 12;
     let pattern = this._patterns.get(patternName);
     let rowCount = pattern.height;
@@ -57,6 +62,7 @@ export class PatternService {
         rows[row].append($cell);
       }
     }
+    this._previewCache.set(patternName, rows);
     $('.dropdown__preview').append(rows);
   }
 
