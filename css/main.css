@@ -33,7 +33,7 @@ html, body {
 }
 
 .header__text {
-  font-family: serif;
+  font-family: sans-serif;
   text-align: center;
   width: 600px;
 }
@@ -47,6 +47,7 @@ html, body {
       -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
+  background-color: #111;
 }
 
 .wrapper {
@@ -56,7 +57,7 @@ html, body {
   margin: 0 auto;
   margin-top: 8px;
   margin-bottom: 20px;
-  background-color: #000;
+  background-color: #111;
   position: relative;
 }
 
@@ -300,6 +301,10 @@ input[type=range]:focus::-ms-fill-upper {
   margin-right: 4px;
 }
 
+.game-wrapper {
+  min-width: 900px;
+}
+
 #game-board {
   margin: 0 auto;
   background-color: #000;
@@ -364,6 +369,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .pattern-list {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -377,8 +383,14 @@ input[type=range]:focus::-ms-fill-upper {
   -ms-flex-line-pack: start;
       align-content: flex-start;
   border: 1.5px solid #1d9f49;
+  min-height: 602px;
   height: 100%;
   padding-top: 20px;
+}
+
+.pattern-list .fa-spin {
+  font-size: 40px;
+  position: absolute;
 }
 
 .pattern-nav {
@@ -469,7 +481,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .pattern-selector:active {
-  background-color: #111010;
+  background-color: #1d1a1a;
 }
 
 .pattern-selector.selected {

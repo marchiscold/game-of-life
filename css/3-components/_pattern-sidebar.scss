@@ -8,14 +8,20 @@
 }
 
 .pattern-list {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   align-content: flex-start;
   border: 1.5px solid $color-primary-darker;
+  min-height: 602px;
   height: 100%;
   padding-top: 20px;
+  & .fa-spin {
+    font-size: 40px;
+    position: absolute;
+  }
 }
 
 .pattern-nav {
@@ -70,7 +76,7 @@
   margin: 10px;
   cursor: pointer;
   &:active {
-    background-color: rgb(17, 16, 16);
+    background-color: rgb(29, 26, 26);
   }
   &.selected {
     border: 1.5px solid $color-primary-darker;
