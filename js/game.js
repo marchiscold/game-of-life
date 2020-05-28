@@ -3,7 +3,7 @@ export class Game {
     this._board = board;
     this._isPaused = true;
     this._isPausedForDrawing = false;
-    this._genPerSecond = 5;
+    this._genPerSecond = $('#range').attr('value');
     this._run();
   }
   

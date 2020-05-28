@@ -87,9 +87,14 @@ export class EventHandler {
                                                 .find('span')
                                                 .text());
       $('.dropdown__list').hide();
-      this._controls.stop();
-      this._board.clear();
-      this._board.drawCenteredPattern(patternName);
+
+      if (ev.target.matches('i')) {
+        this._board.setHighlightPattern(patternName);
+      } else {
+        this._controls.stop();
+        this._board.clear();
+        this._board.drawCenteredPattern(patternName);
+      }
     });
     $(document).on('mouseenter', '.dropdown__item', ev => {
       let patternName = ev.target.closest('.dropdown__item').dataset.name;

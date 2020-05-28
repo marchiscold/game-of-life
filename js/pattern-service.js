@@ -70,7 +70,7 @@ export class PatternService {
     let $dropdownItem = $('<div>', {'class': 'dropdown__item',
                                     'data-name': patternId});
     let $text = $('<span>' + pattern.name + '</span>');
-    let $icon = $('<i class="fa fa-angle-double-right" aria-hidden="true"></i>');
+    let $icon = $('<i class="fas fa-mouse"></i>');
     $dropdownItem.append($text, $icon);
     return  $dropdownItem;                                   
   }
