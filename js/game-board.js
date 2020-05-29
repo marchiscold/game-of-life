@@ -10,6 +10,7 @@ export class GameBoard extends Board {
     this._patterns = patternService;
     this._highlightPattern = '';
     this._highlightedCells = [];
+    this._rotations = 0;
 
     super._initDOMBoard(this._gameElement);
   }
@@ -40,12 +41,21 @@ export class GameBoard extends Board {
   }
 
   setHighlightPattern(patternName) {
+    this._rotations = 0;
     this._highlightPattern = patternName;
   }
 
   removeHighlightPattern() {
     this._highlightPattern = '';
+    this._rotations = 0;
     this.removePatternHighlight();
+  }
+
+  removePatternHighlight() {
+    this._highlightedCells.forEach(cell => {
+      cell.removeHighlight();
+    })
+    this._highlightedCells = [];
   }
 
   onMouseDown(cellElem, shiftKey) {
@@ -54,8 +64,7 @@ export class GameBoard extends Board {
       let offsetLeft = this._cellMap.get(cellElem).getCol();
       this.drawPattern(this._highlightPattern, offsetTop, offsetLeft);
       if (!shiftKey) {
-        this.removePatternHighlight();
-        this._highlightPattern = '';
+        this.removeHighlightPattern();
       }
     } else {
       this.toggleCell(cellElem);
@@ -86,9 +95,44 @@ export class GameBoard extends Board {
     }
   }
 
+  _renderHighlights() {
+    this._highlightedCells.forEach(cell => {
+      cell.addHighlight();
+    })
+  }
+
+  rotateHighlight() {
+    if (this._highlightPattern != '') {
+      this._rotations < 3 ? this._rotations++ : this._rotations = 0;
+    }
+    console.log(this._rotations);
+  }
+
+  _rotatePattern(pattern) {
+    let patternCopy = JSON.parse(JSON.stringify(pattern));
+
+    function rotateArray(arr) {
+      let copy = [];
+      for (let arrCol = 0; arrCol < arr[0].length; arrCol++) {
+        copy[arrCol] = [];
+        for (let arrRow = 0; arrRow < arr.length; arrRow++) {
+          copy[arrCol].push(arr[arr.length - 1 - arrRow][arrCol]);
+        }
+      }
+      return copy;
+    }
+
+    for (let i = 0; i < this._rotations; i++) {
+      patternCopy.arr = rotateArray(patternCopy.arr);
+      [patternCopy.width, patternCopy.height] = [patternCopy.height, patternCopy.width];
+    }
+    return patternCopy;
+  }
+
   _highlightWithPattern(patternName, cellElem) {
     let cell = this._cellMap.get(cellElem);
     let pattern = this._patterns.getPattern(patternName);
+    pattern = this._rotatePattern(pattern);
     let offsetTop = cell.getRow();
     let offsetLeft = cell.getCol();
 
@@ -114,19 +158,6 @@ export class GameBoard extends Board {
       }
     }
     this._renderHighlights();
-  }
-
-  removePatternHighlight() {
-    this._highlightedCells.forEach(cell => {
-      cell.removeHighlight();
-    })
-    this._highlightedCells = [];
-  }
-
-  _renderHighlights() {
-    this._highlightedCells.forEach(cell => {
-      cell.addHighlight();
-    })
   }
 
   drawPattern(patternName, top, left) {

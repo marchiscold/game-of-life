@@ -128,6 +128,12 @@ export class EventHandler {
       }
     });
     $(document).on('mousedown', '.cell', ev => {
+      if (ev.which != 2) return;
+      this._board.rotateHighlight();
+      this._board.removePatternHighlight();
+      this._board.highlight(ev.target);
+    });
+    $(document).on('mousedown', '.cell', ev => {
       if (ev.which != 1) return;
 
       if (!ev.shiftKey) {
