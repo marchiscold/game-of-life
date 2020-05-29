@@ -290,7 +290,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .game-button:focus {
-  outline-color: #249449;
+  outline: 1px solid #249449;
 }
 
 .range-label {

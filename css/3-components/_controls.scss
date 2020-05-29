@@ -16,7 +16,7 @@
   }
   
   &:focus {
-    outline-color: darken($color-primary, 15%);
+    outline: 1px solid darken($color-primary, 15%);
   }
 }
 
