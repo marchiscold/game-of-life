@@ -11,6 +11,7 @@ export class GameBoard extends Board {
     this._highlightPattern = '';
     this._highlightedCells = [];
     this._rotations = 0;
+    this._rotationCache = new Map();
 
     super._initDOMBoard(this._gameElement);
   }
@@ -105,10 +106,19 @@ export class GameBoard extends Board {
     if (this._highlightPattern != '') {
       this._rotations < 3 ? this._rotations++ : this._rotations = 0;
     }
-    console.log(this._rotations);
   }
 
   _rotatePattern(pattern) {
+    if (this._rotations == 0) {
+      return pattern;
+    }
+    if (this._rotationCache.has(pattern) &&
+        this._rotationCache.get(pattern)[this._rotations]) {
+      return this._rotationCache.get(pattern)[this._rotations];
+    }
+    if (!this._rotationCache.has(pattern)) {
+      this._rotationCache.set(pattern, []);
+    }
     let patternCopy = JSON.parse(JSON.stringify(pattern));
 
     function rotateArray(arr) {
@@ -126,6 +136,9 @@ export class GameBoard extends Board {
       patternCopy.arr = rotateArray(patternCopy.arr);
       [patternCopy.width, patternCopy.height] = [patternCopy.height, patternCopy.width];
     }
+    let rotationArr = this._rotationCache.get(pattern);
+    rotationArr[this._rotations] = patternCopy;
+    this._rotationCache.set(pattern, rotationArr);
     return patternCopy;
   }
 

@@ -587,7 +587,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .dropdown__item i {
-  padding: 5px 0px 5px 5px;
+  padding: 8px 0px 8px 7px;
   opacity: 0;
   -webkit-transition: -webkit-transform .1s linear;
   transition: -webkit-transform .1s linear;
