@@ -162,6 +162,7 @@ export class GameBoard extends Board {
 
   drawPattern(patternName, top, left) {
     let pattern = this._patterns.getPattern(patternName);
+    pattern = this._rotatePattern(pattern);
     let offsetTop = top != undefined ? top : parseInt(this._rows/2);
     let offsetLeft = left != undefined ? left : parseInt(this._cols/2);
 
