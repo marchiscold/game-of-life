@@ -52,6 +52,15 @@ export class GameBoard extends Board {
     this.removePatternHighlight();
   }
 
+  
+  highlight(cellElem) {
+    if (this._highlightPattern != '') {
+      this._highlightWithPattern(this._highlightPattern, cellElem);
+    } else {
+      this.highlightCell(cellElem);
+    }
+  }
+
   removePatternHighlight() {
     this._highlightedCells.forEach(cell => {
       cell.removeHighlight();
@@ -86,14 +95,6 @@ export class GameBoard extends Board {
 
   contains(cellElem) {
     return this._gameElement.contains(cellElem);
-  }
-
-  highlight(cellElem) {
-    if (this._highlightPattern != '') {
-      this._highlightWithPattern(this._highlightPattern, cellElem);
-    } else {
-      this.highlightCell(cellElem);
-    }
   }
 
   _renderHighlights() {
