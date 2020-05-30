@@ -35,6 +35,15 @@ export class EventHandler {
   }
 
   _initSidebarPatterns() {
+    $(document).one('click', '.pattern-selector', ev => {
+      $(ev.target.closest('.pattern-selector'))
+      .notify('press wheel button to rotate element', {position: 'top left',
+                                                       className: 'info',
+                                                       showDuration: 100,
+                                                       style: 'happyblue',
+                                                       autoHideDelay: 8000});
+      // $(ev.target.closest('.pattern-selector')).notify('hold shift to insert multiple elements', 'info');
+    });
     $(document).on('click', '.pattern-selector', ev => {
       if ($(ev.currentTarget).hasClass('selected')) {
         this._board.removeHighlightPattern();
